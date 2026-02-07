@@ -270,6 +270,10 @@ body {
     cursor: pointer;
     text-align: center;
     transition: all var(--transition-fast);
+    color: var(--color-black);
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-text-fill-color: var(--color-black);
 }
 
 .day-tab:last-child {
@@ -349,14 +353,17 @@ body {
 }
 
 .progress-title {
-    font-family: var(--font-display);
-    font-size: 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }
 
 .progress-status {
-    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--color-gray);
 }
 
@@ -381,11 +388,14 @@ body {
 }
 
 .progress-percent {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
+    font-weight: 700;
     color: var(--color-accent);
 }
 
 .progress-time {
+    font-family: var(--font-mono);
+    font-weight: 600;
     color: var(--color-gray);
 }
 
@@ -508,15 +518,18 @@ body {
 }
 
 .event-title-en {
+    font-family: var(--font-heading);
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--color-gray);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.1em;
 }
 
 .event-description {
+    font-family: var(--font-heading);
     color: var(--color-gray);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 500;
     line-height: 1.5;
     margin-bottom: var(--spacing-md);
 }
@@ -817,31 +830,31 @@ body {
 .countdown-section {
     background-color: var(--color-white);
     border: var(--border-style);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg) var(--spacing-md);
     margin-bottom: var(--spacing-lg);
     box-shadow: var(--shadow-brutal);
     text-align: center;
 }
 
 .countdown-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
 }
 
 .countdown-title {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
 .countdown-display {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
 }
 
 .countdown-number {
     font-family: var(--font-heading);
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     line-height: 1;
     color: var(--color-accent);
@@ -850,7 +863,7 @@ body {
 
 .countdown-label {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     color: var(--color-gray);
@@ -861,8 +874,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
     background-color: var(--color-bg-alt);
     border: 2px solid var(--color-black);
 }
@@ -871,31 +884,32 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
 }
 
 .time-label {
-    font-size: 0.875rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
 .time-value {
     font-family: var(--font-mono);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: 0.05em;
 }
 
 .time-date {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-gray);
 }
 
 .time-divider {
     width: 2px;
-    height: 60px;
+    height: 48px;
     background-color: var(--color-black);
 }
 
