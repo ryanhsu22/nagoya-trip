@@ -287,6 +287,7 @@ body {
 .day-tab.active {
     background-color: var(--color-black);
     color: var(--color-white);
+    -webkit-text-fill-color: var(--color-white);
 }
 
 .day-tab.today {
@@ -895,9 +896,9 @@ body {
 
 .time-value {
     font-family: var(--font-mono);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
 }
 
 .time-date {
@@ -941,8 +942,9 @@ body {
 }
 
 .day-indicator {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 0.625rem;
+    font-weight: 700;
     padding: 2px 6px;
     background-color: var(--color-bg-alt);
     border: 1px solid var(--color-black);
