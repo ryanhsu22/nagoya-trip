@@ -879,6 +879,18 @@ body {
     padding: var(--spacing-md);
     background-color: var(--color-bg-alt);
     border: 2px solid var(--color-black);
+    width: 100%;
+    flex-wrap: nowrap;
+    /* 強制不換行 */
+}
+
+/* Mobile adjustment for countdown times */
+@media (max-width: 480px) {
+    .countdown-times {
+        gap: var(--spacing-sm);
+        /* 手機上縮小間距 */
+        padding: var(--spacing-sm);
+    }
 }
 
 .time-block {
