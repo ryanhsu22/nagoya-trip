@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2026年2月名古屋5天4夜家庭旅遊互動行程指南">
+    <meta name="theme-color" content="#F5F0E8">
+    <title>NAGOYA TRIP 2026 | 名古屋家庭旅遊</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <!-- Side Drawer Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Side Drawer Menu -->
+    <aside class="side-drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">MENU</span>
+            <button class="btn-close drawer-close" id="drawerCloseBtn"><i data-lucide="x"></i></button>
+        </div>
+        <nav class="drawer-nav">
+            <button class="drawer-item active" data-page="itinerary">
+                <span class="drawer-icon"><i data-lucide="calendar-days"></i></span>
+                <span class="drawer-text">行程清單</span>
+            </button>
+            <button class="drawer-item" data-page="flight">
+                <span class="drawer-icon"><i data-lucide="plane"></i></span>
+                <span class="drawer-text">航班與行李資訊</span>
+            </button>
+            <button class="drawer-item" data-page="weather">
+                <span class="drawer-icon"><i data-lucide="cloud-sun"></i></span>
+                <span class="drawer-text">天氣狀況與穿衣建議</span>
+            </button>
+            <button class="drawer-item" data-page="hotel">
+                <span class="drawer-icon"><i data-lucide="building-2"></i></span>
+                <span class="drawer-text">住宿資訊與鄰近商圈</span>
+            </button>
+            <button class="drawer-item" data-page="transport">
+                <span class="drawer-icon"><i data-lucide="train-front"></i></span>
+                <span class="drawer-text">交通資訊</span>
+            </button>
+            <button class="drawer-item" data-page="medical">
+                <span class="drawer-icon"><i data-lucide="heart-pulse"></i></span>
+                <span class="drawer-text">醫療資訊</span>
+            </button>
+            <button class="drawer-item" data-page="baby">
+                <span class="drawer-icon"><i data-lucide="baby"></i></span>
+                <span class="drawer-text">幼兒注意事項</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="btn-icon menu-btn" id="menuBtn" title="選單">
+                    <i data-lucide="menu"></i>
+                </button>
+                <div class="logo">
+                    <span class="logo-icon">▓▓</span>
+                    <span class="logo-text">NAGOYA TRIP <span class="logo-year">2026</span></span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-icon" id="notificationBtn" title="通知設定">
+                    <span class="icon">🔔</span>
+                </button>
+                <button class="btn-primary" id="mapToggleBtn">
+                    <span class="icon">🗺️</span>
+                    <span class="btn-text">MAP</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Container -->
+    <div class="page-container">
+
+        <!-- Page: Itinerary (Default) -->
+        <div class="page active" id="page-itinerary">
+            <!-- Day Navigation -->
+            <nav class="day-nav">
+                <div class="day-nav-scroll">
+                    <button class="day-tab active" data-day="1">
+                        <span class="day-label">DAY 1</span>
+                        <span class="day-date">2/20</span>
+                    </button>
+                    <button class="day-tab" data-day="2">
+                        <span class="day-label">DAY 2</span>
+                        <span class="day-date">2/21</span>
+                    </button>
+                    <button class="day-tab" data-day="3">
+                        <span class="day-label">DAY 3</span>
+                        <span class="day-date">2/22</span>
+                    </button>
+                    <button class="day-tab" data-day="4">
+                        <span class="day-label">DAY 4</span>
+                        <span class="day-date">2/23</span>
+                    </button>
+                    <button class="day-tab" data-day="5">
+                        <span class="day-label">DAY 5</span>
+                        <span class="day-date">2/24</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Countdown Section (顯示於旅程開始前) -->
+                <section class="countdown-section" id="countdownSection">
+                    <div class="countdown-header">
+                        <h2 class="countdown-title">DEPARTURE COUNTDOWN</h2>
+                    </div>
+                    <div class="countdown-display">
+                        <div class="countdown-number" id="countdownDays">20</div>
+                        <div class="countdown-label">DAYS TO GO</div>
+                    </div>
+                    <div class="countdown-times">
+                        <div class="time-block">
+                            <span class="time-label">台灣時間</span>
+                            <span class="time-value" id="taiwanTime">--:--:--</span>
+                            <span class="time-date" id="taiwanDate">----/--/--</span>
+                        </div>
+                        <div class="time-divider"></div>
+                        <div class="time-block">
+                            <span class="time-label">日本時間</span>
+                            <span class="time-value" id="japanTime">--:--:--</span>
+                            <span class="time-date" id="japanDate">----/--/--</span>
+                        </div>
+                    </div>
+                    <!-- 測試按鈕 -->
+                    <button class="btn-test" id="testModeBtn" onclick="toggleTestMode()">測試模式：切換倒數/進度</button>
+                </section>
+
+                <!-- Progress Section (顯示於旅程進行中) -->
+                <section class="progress-section hidden" id="progressSection">
+                    <div class="progress-header">
+                        <h2 class="progress-title">TRIP PROGRESS</h2>
+                        <span class="progress-status" id="progressStatus">行程進行中</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-info">
+                        <div class="progress-days">
+                            <span class="day-indicator" data-day="1">D1</span>
+                            <span class="day-indicator" data-day="2">D2</span>
+                            <span class="day-indicator" data-day="3">D3</span>
+                            <span class="day-indicator" data-day="4">D4</span>
+                            <span class="day-indicator" data-day="5">D5</span>
+                        </div>
+                        <span class="progress-percent" id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-times">
+                        <span class="progress-time">🇹🇼 <span id="progressTaiwanTime">--:--</span></span>
+                        <span class="progress-time">🇯🇵 <span id="progressJapanTime">--:--</span></span>
+                    </div>
+                </section>
+
+                <!-- Day Theme -->
+                <section class="day-theme-section">
+                    <h1 class="day-theme" id="dayTheme">抵達與頂級燒肉</h1>
+                    <p class="day-subtitle" id="daySubtitle">Day 1 · 2026年2月20日 週五</p>
+                </section>
+
+                <!-- Timeline -->
+                <section class="timeline-section">
+                    <div class="timeline" id="timeline">
+                        <!-- Events will be rendered here by JavaScript -->
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Page: Flight Info -->
+        <div class="page" id="page-flight">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">航班與行李資訊</h1>
+                    <p class="page-subtitle">Flight & Baggage Information</p>
+                </section>
+                <div class="info-content" id="flightContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Page: Weather -->
+        <div class="page" id="page-weather">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">天氣狀況與穿衣建議</h1>
+                    <p class="page-subtitle">Weather & Clothing Guide</p>
+                </section>
+                <div class="info-content" id="weatherContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Page: Hotel -->
+        <div class="page" id="page-hotel">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">住宿資訊與鄰近商圈</h1>
+                    <p class="page-subtitle">Hotel & Nearby Area</p>
+                </section>
+                <div class="info-content" id="hotelContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Page: Transport -->
+        <div class="page" id="page-transport">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">交通資訊</h1>
+                    <p class="page-subtitle">Transportation Guide</p>
+                </section>
+                <div class="info-content" id="transportContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Page: Medical -->
+        <div class="page" id="page-medical">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">醫療資訊</h1>
+                    <p class="page-subtitle">Medical Information</p>
+                </section>
+                <div class="info-content" id="medicalContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Page: Baby -->
+        <div class="page" id="page-baby">
+            <main class="main-content">
+                <section class="page-header-section">
+                    <h1 class="page-title">幼兒注意事項</h1>
+                    <p class="page-subtitle">Toddler Care Guide</p>
+                </section>
+                <div class="info-content" id="babyContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- Map Section (Hidden by default) -->
+    <section class="map-section hidden" id="mapSection">
+        <div class="map-header">
+            <h2 class="map-title">INTERACTIVE MAP</h2>
+            <button class="btn-close" id="mapCloseBtn"><i data-lucide="x"></i></button>
+        </div>
+        <div class="map-container" id="map"></div>
+    </section>
+
+    <!-- Notification Permission Modal -->
+    <div class="modal hidden" id="notificationModal">
+        <div class="modal-content">
+            <h3 class="modal-title">開啟行程提醒</h3>
+            <p class="modal-text">允許通知以在行程開始前 15 分鐘提醒您</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="notificationLater">稍後再說</button>
+                <button class="btn-primary" id="notificationAllow">開啟通知</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data/itinerary.json" type="application/json" id="itineraryData"></script>
+    <script src="js/schedule.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+    "name": "NAGOYA TRIP 2026",
+    "short_name": "名古屋旅行",
+    "description": "2026年2月名古屋5天4夜家庭旅遊互動行程指南",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F5F0E8",
+    "theme_color": "#F5F0E8",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
