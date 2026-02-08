@@ -43,9 +43,9 @@ const EMBEDDED_ITINERARY_DATA = {
         {
             "day": 1, "date": "2026-02-20", "dayOfWeek": "五", "theme": "抵達與頂級燒肉",
             "events": [
-                { "id": "d1-e1", "time": "15:35", "endTime": "16:30", "title": "抵達中部國際機場", "titleEn": "Arrive at Chubu Centrair Airport", "description": "搭乘 μ-SKY 列車 (約 28 分鐘) 直達名古屋車站", "icon": "<i data-lucide='plane'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
+                { "id": "d1-e1", "time": "15:35", "endTime": "16:30", "title": "抵達中部國際機場", "titleEn": "Arrive at Chubu Centrair Airport", "description": "搭乘 μ-SKY 列車 (約 28 分鐘) 直達名古屋車站", "icon": "<i data-lucide='plane-landing'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
                 { "id": "d1-e2", "time": "17:00", "endTime": "17:30", "title": "飯店 Check-in", "titleEn": "Hotel Check-in", "description": "轉乘計程車 (約 5 分鐘) 前往飯店 Check-in 與休息", "icon": "<i data-lucide='bed-double'></i>", "category": "hotel", "coordinates": { "lat": 35.1706, "lng": 136.8816 } },
-                { "id": "d1-e3", "time": "18:30", "endTime": "20:30", "title": "晚餐：牛ざんまい 納屋橋", "titleEn": "Dinner: Gyuzanmai Nayabashi", "description": "飛驒牛燒肉，位於納屋橋河畔，氣氛極佳，高 CP 值", "icon": "<i data-lucide='utensils'></i>", "category": "food", "coordinates": { "lat": 35.1658, "lng": 136.8990 } }
+                { "id": "d1-e3", "time": "18:30", "endTime": "20:30", "title": "晚餐：牛ざんまい 納屋橋", "titleEn": "Dinner: Gyuzanmai Nayabashi", "description": "飛騨牛燒肉，位於納屋橋河畔，氣氛極佳，高 CP 值", "icon": "<i data-lucide='beef'></i>", "category": "food", "coordinates": { "lat": 35.1658, "lng": 136.8990 } }
             ]
         },
         {
@@ -54,7 +54,7 @@ const EMBEDDED_ITINERARY_DATA = {
                 { "id": "d2-e1", "time": "09:30", "endTime": "12:00", "title": "名古屋城", "titleEn": "Nagoya Castle", "description": "參觀本丸御殿（金碧輝煌的壁畫）。城內部分碎石路，建議推車走鋪設步道。", "icon": "<i data-lucide='castle'></i>", "category": "attraction", "coordinates": { "lat": 35.1856, "lng": 136.8994 } },
                 { "id": "d2-e2", "time": "12:00", "endTime": "13:30", "title": "午餐：金鯱橫丁", "titleEn": "Lunch: Kinshachi Yokocho", "description": "名古屋城正門外美食街。推薦：矢場炸豬排或鳥開總本家親子丼", "icon": "<i data-lucide='utensils'></i>", "category": "food", "coordinates": { "lat": 35.1851, "lng": 136.8998 } },
                 { "id": "d2-e3", "time": "14:00", "endTime": "16:30", "title": "豐田產業技術紀念館", "titleEn": "Toyota Commemorative Museum", "description": "紡織機械實演、Technoland 兒童體驗區讓小孩放電。館內有咖啡廳可休息。", "icon": "<i data-lucide='car'></i>", "category": "attraction", "coordinates": { "lat": 35.1797, "lng": 136.8722 } },
-                { "id": "d2-e4", "time": "17:00", "endTime": "19:00", "title": "晚餐：備長鰻魚飯", "titleEn": "Dinner: Bincho Unagi", "description": "【已訂位 17:00】大名古屋大廈 3F。正宗炭烤三吃鰻魚飯。", "icon": "<i data-lucide='beef'></i>", "category": "food", "isReserved": true, "coordinates": { "lat": 35.1709, "lng": 136.8819 } }
+                { "id": "d2-e4", "time": "17:00", "endTime": "19:00", "title": "晚餐：備長鰻魚飯", "titleEn": "Dinner: Bincho Unagi", "description": "【已訂位 17:00】大名古屋大廈 3F。正宗炭烤三吃鰻魚飯。", "icon": "<i data-lucide='fish-symbol'></i>", "category": "food", "isReserved": true, "coordinates": { "lat": 35.1709, "lng": 136.8819 } }
             ]
         },
         {
@@ -80,8 +80,8 @@ const EMBEDDED_ITINERARY_DATA = {
             "events": [
                 { "id": "d5-e1", "time": "09:00", "endTime": "11:00", "title": "熱田神宮", "titleEn": "Atsuta Shrine", "description": "日本三大神宮之一，參天古樹。地面多碎石，包車司機可停在離本殿最近入口。", "icon": "<i data-lucide='landmark'></i>", "category": "attraction", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
                 { "id": "d5-e2", "time": "11:30", "endTime": "12:30", "title": "午餐：宮きしめん", "titleEn": "Lunch: Miya Kishimen", "description": "神宮境內。在樹林下吃寬扁麵，湯頭清爽，別有風味。", "icon": "<i data-lucide='soup'></i>", "category": "food", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
-                { "id": "d5-e3", "time": "13:30", "endTime": "15:00", "title": "前往機場 & 採買", "titleEn": "Head to Airport & Shopping", "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。", "icon": "<i data-lucide='car'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
-                { "id": "d5-e4", "time": "16:40", "endTime": "19:15", "title": "返程航班 CX531", "titleEn": "Return Flight CX531", "description": "名古屋 16:40 起飛 → 台北 19:15 抵達", "icon": "<i data-lucide='plane'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } }
+                { "id": "d5-e3", "time": "13:30", "endTime": "15:00", "title": "前往機場 & 採買", "titleEn": "Head to Airport & Shopping", "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。", "icon": "<i data-lucide='car-taxi-front'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
+                { "id": "d5-e4", "time": "16:40", "endTime": "19:15", "title": "返程航班 CX531", "titleEn": "Return Flight CX531", "description": "名古屋 16:40 起飛 → 台北 19:15 抵達", "icon": "<i data-lucide='plane-takeoff'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } }
             ]
         }
     ],

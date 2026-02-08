@@ -61,21 +61,19 @@ class MapManager {
         const iconSize = 18;
 
         // 根據類別設定顏色
-        let bgColor, borderColor, iconColor;
+        let bgColor, iconColor;
         switch (category) {
             case 'food':
-                // 用餐: 橘色 (Claude 品牌色)
+                // 用餐: 橘色 (Claude 品牌色)，無邊框
                 bgColor = '#DA7756';
-                borderColor = '#1A1A2E';
                 iconColor = '#FFFFFF';
                 break;
             case 'attraction':
             case 'transport':
             default:
-                // 景點/機場: 金色
+                // 景點/交通: 金色，白色圖標，無邊框
                 bgColor = '#E9A23B';
-                borderColor = '#1A1A2E';
-                iconColor = '#1A1A2E';
+                iconColor = '#FFFFFF';
                 break;
         }
 
@@ -85,7 +83,7 @@ class MapManager {
                 width: ${size}px;
                 height: ${size}px;
                 background: ${bgColor};
-                border: 3px solid ${borderColor};
+                border: none;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
