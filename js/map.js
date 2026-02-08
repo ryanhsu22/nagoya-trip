@@ -26,10 +26,11 @@ class MapManager {
             zoomControl: true
         });
 
-        // 使用 OpenStreetMap 圖層
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            maxZoom: 18
+        // 使用 CartoDB Voyager 圖層 (現代風格，類似 Google Maps)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 19,
+            subdomains: 'abcd'
         }).addTo(this.map);
 
         this.markerGroup = L.featureGroup().addTo(this.map);
