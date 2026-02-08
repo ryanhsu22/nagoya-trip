@@ -320,12 +320,14 @@ body {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--color-gray) !important;
+    -webkit-text-fill-color: var(--color-gray) !important;
     margin-top: 4px;
     letter-spacing: 0.02em;
 }
 
 .day-tab.active .day-date {
-    color: var(--color-gray-light);
+    color: var(--color-gray-light) !important;
+    -webkit-text-fill-color: var(--color-gray-light) !important;
 }
 
 /* ============================================
@@ -504,14 +506,14 @@ body {
 .event-icon {
     font-size: 1.5rem;
     flex-shrink: 0;
-    color: var(--color-accent);
+    color: var(--color-teal);
 }
 
 .event-icon i,
 .event-icon svg {
     width: 24px;
     height: 24px;
-    stroke: var(--color-accent);
+    stroke: var(--color-teal);
 }
 
 .event-title-group {
