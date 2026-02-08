@@ -504,6 +504,14 @@ body {
 .event-icon {
     font-size: 1.5rem;
     flex-shrink: 0;
+    color: var(--color-gray);
+}
+
+.event-icon i,
+.event-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-gray);
 }
 
 .event-title-group {
@@ -887,9 +895,31 @@ body {
 /* Mobile adjustment for countdown times */
 @media (max-width: 480px) {
     .countdown-times {
-        gap: var(--spacing-sm);
-        /* 手機上縮小間距 */
-        padding: var(--spacing-sm);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+    }
+
+    .time-block {
+        flex: 1;
+        min-width: 0;
+        /* 允許收縮 */
+    }
+
+    .time-label {
+        font-size: 0.625rem;
+    }
+
+    .time-value {
+        font-size: 0.875rem;
+    }
+
+    .time-date {
+        font-size: 0.625rem;
+    }
+
+    .time-divider {
+        display: none;
+        /* 手機隱藏分隔線 */
     }
 }
 
