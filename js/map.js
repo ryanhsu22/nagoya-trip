@@ -26,10 +26,11 @@ class MapManager {
             zoomControl: true
         });
 
-        // 使用 OSM Hot (暖色系，資訊平衡，無地形)
-        L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles: <a href="https://www.hotosm.org/">HOT</a>',
-            maxZoom: 19
+        // 使用 CartoDB Positron (極簡灰白風格，乾淨現代)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 19,
+            subdomains: 'abcd'
         }).addTo(this.map);
 
         this.markerGroup = L.featureGroup().addTo(this.map);
