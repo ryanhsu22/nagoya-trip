@@ -26,11 +26,10 @@ class MapManager {
             zoomControl: true
         });
 
-        // 使用 CartoDB Positron (極簡灰白風格，乾淨現代)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            maxZoom: 19,
-            subdomains: 'abcd'
+        // 使用 Wikimedia Maps (色彩豐富，資訊完整，風格清晰)
+        L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+            maxZoom: 19
         }).addTo(this.map);
 
         this.markerGroup = L.featureGroup().addTo(this.map);
