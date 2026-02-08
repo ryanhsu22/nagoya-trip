@@ -881,6 +881,8 @@ body {
 
 .countdown-times {
     display: flex;
+    flex-direction: row;
+    /* 強制水平排列 */
     justify-content: center;
     align-items: center;
     gap: var(--spacing-lg);
@@ -889,12 +891,13 @@ body {
     border: 2px solid var(--color-black);
     width: 100%;
     flex-wrap: nowrap;
-    /* 強制不換行 */
 }
 
 /* Mobile adjustment for countdown times */
 @media (max-width: 480px) {
     .countdown-times {
+        flex-direction: row !important;
+        /* 強制水平 */
         gap: var(--spacing-xs);
         padding: var(--spacing-xs);
     }
