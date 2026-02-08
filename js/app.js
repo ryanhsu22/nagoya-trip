@@ -62,7 +62,7 @@ const EMBEDDED_ITINERARY_DATA = {
             "events": [
                 { "id": "d3-e1", "time": "10:00", "endTime": "14:00", "title": "LEGOLAND Japan", "titleEn": "LEGOLAND Japan", "description": "適合 2-12 歲，設施溫和。推薦「得寶谷 (Duplo Valley)」給 2 歲兒子。", "icon": "<i data-lucide='blocks'></i>", "category": "attraction", "coordinates": { "lat": 35.0447, "lng": 136.8444 } },
                 { "id": "d3-e2", "time": "12:00", "endTime": "13:00", "title": "午餐：Knight's Table", "titleEn": "Lunch: Knight's Table", "description": "樂高樂園內餐廳，空間大，有兒童餐。", "icon": "<i data-lucide='utensils'></i>", "category": "food", "coordinates": { "lat": 35.0447, "lng": 136.8444 } },
-                { "id": "d3-e3", "time": "14:30", "endTime": "16:30", "title": "磁浮、鐵道館", "titleEn": "SCMAGLEV and Railway Park", "description": "樂高樂園對面。歷代新幹線實車展示、巨大鐵道模型場景。", "icon": "<i data-lucide='train-front'></i>", "category": "attraction", "coordinates": { "lat": 35.0431, "lng": 136.8486 } },
+                { "id": "d3-e3", "time": "14:30", "endTime": "16:30", "title": "磁浮鐵道館", "titleEn": "SCMAGLEV and Railway Park", "description": "樂高樂園對面。歷代新幹線實車展示、巨大鐵道模型場景。", "icon": "<i data-lucide='train-front'></i>", "category": "attraction", "coordinates": { "lat": 35.0431, "lng": 136.8486 } },
                 { "id": "d3-e4", "time": "18:00", "endTime": "19:30", "title": "晚餐：壽司郎 榮店", "titleEn": "Dinner: Sushiro Sakae", "description": "Maruei Galleria 1F，迴轉壽司。請務必先用 App 預約時段。", "icon": "<i data-lucide='fish'></i>", "category": "food", "coordinates": { "lat": 35.1668, "lng": 136.9069 } }
             ]
         },

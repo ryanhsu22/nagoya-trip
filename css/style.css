@@ -506,14 +506,14 @@ body {
 .event-icon {
     font-size: 1.5rem;
     flex-shrink: 0;
-    color: var(--color-teal);
+    color: #8B5CF6;
 }
 
 .event-icon i,
 .event-icon svg {
     width: 24px;
     height: 24px;
-    stroke: var(--color-teal);
+    stroke: #8B5CF6;
 }
 
 .event-title-group {
@@ -923,8 +923,8 @@ body {
     }
 
     .time-divider {
-        display: none;
-        /* 手機隱藏分隔線 */
+        height: 40px;
+        /* 手機版變短 */
     }
 }
 
