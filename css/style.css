@@ -319,7 +319,7 @@ body {
     font-family: var(--font-mono);
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-gray);
+    color: var(--color-gray) !important;
     margin-top: 4px;
     letter-spacing: 0.02em;
 }
@@ -504,14 +504,14 @@ body {
 .event-icon {
     font-size: 1.5rem;
     flex-shrink: 0;
-    color: var(--color-gray);
+    color: var(--color-accent);
 }
 
 .event-icon i,
 .event-icon svg {
     width: 24px;
     height: 24px;
-    stroke: var(--color-gray);
+    stroke: var(--color-accent);
 }
 
 .event-title-group {
