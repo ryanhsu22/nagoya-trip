@@ -26,10 +26,10 @@ class MapManager {
             zoomControl: true
         });
 
-        // 使用 Esri World Street Map (類似 Google Maps，資訊豐富)
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ',
-            maxZoom: 18
+        // 使用 OSM Hot (暖色系，資訊平衡，無地形)
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles: <a href="https://www.hotosm.org/">HOT</a>',
+            maxZoom: 19
         }).addTo(this.map);
 
         this.markerGroup = L.featureGroup().addTo(this.map);
