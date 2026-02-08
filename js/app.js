@@ -51,10 +51,10 @@ const EMBEDDED_ITINERARY_DATA = {
         {
             "day": 2, "date": "2026-02-21", "dayOfWeek": "六", "theme": "歷史巡禮與備長鰻魚飯",
             "events": [
-                { "id": "d2-e1", "time": "09:30", "endTime": "12:00", "title": "名古屋城", "titleEn": "Nagoya Castle", "description": "參觀本丸御殿（金碧輝煌的壁畫）。城內部分碎石路，建議推車走鋪設步道。", "icon": "<i data-lucide='landmark'></i>", "category": "attraction", "coordinates": { "lat": 35.1856, "lng": 136.8994 } },
+                { "id": "d2-e1", "time": "09:30", "endTime": "12:00", "title": "名古屋城", "titleEn": "Nagoya Castle", "description": "參觀本丸御殿（金碧輝煌的壁畫）。城內部分碎石路，建議推車走鋪設步道。", "icon": "<i data-lucide='castle'></i>", "category": "attraction", "coordinates": { "lat": 35.1856, "lng": 136.8994 } },
                 { "id": "d2-e2", "time": "12:00", "endTime": "13:30", "title": "午餐：金鯱橫丁", "titleEn": "Lunch: Kinshachi Yokocho", "description": "名古屋城正門外美食街。推薦：矢場炸豬排或鳥開總本家親子丼", "icon": "<i data-lucide='utensils'></i>", "category": "food", "coordinates": { "lat": 35.1851, "lng": 136.8998 } },
-                { "id": "d2-e3", "time": "14:00", "endTime": "16:30", "title": "豐田產業技術紀念館", "titleEn": "Toyota Commemorative Museum", "description": "紡織機械實演、Technoland 兒童體驗區讓小孩放電。館內有咖啡廳可休息。", "icon": "<i data-lucide='factory'></i>", "category": "attraction", "coordinates": { "lat": 35.1797, "lng": 136.8722 } },
-                { "id": "d2-e4", "time": "17:00", "endTime": "19:00", "title": "晚餐：備長鰻魚飯", "titleEn": "Dinner: Bincho Unagi", "description": "【已訂位 17:00】大名古屋大廈 3F。正宗炭烤三吃鰻魚飯。", "icon": "<i data-lucide='fish'></i>", "category": "food", "isReserved": true, "coordinates": { "lat": 35.1709, "lng": 136.8819 } }
+                { "id": "d2-e3", "time": "14:00", "endTime": "16:30", "title": "豐田產業技術紀念館", "titleEn": "Toyota Commemorative Museum", "description": "紡織機械實演、Technoland 兒童體驗區讓小孩放電。館內有咖啡廳可休息。", "icon": "<i data-lucide='car'></i>", "category": "attraction", "coordinates": { "lat": 35.1797, "lng": 136.8722 } },
+                { "id": "d2-e4", "time": "17:00", "endTime": "19:00", "title": "晚餐：備長鰻魚飯", "titleEn": "Dinner: Bincho Unagi", "description": "【已訂位 17:00】大名古屋大廈 3F。正宗炭烤三吃鰻魚飯。", "icon": "<i data-lucide='beef'></i>", "category": "food", "isReserved": true, "coordinates": { "lat": 35.1709, "lng": 136.8819 } }
             ]
         },
         {
@@ -63,14 +63,14 @@ const EMBEDDED_ITINERARY_DATA = {
                 { "id": "d3-e1", "time": "10:00", "endTime": "14:00", "title": "LEGOLAND Japan", "titleEn": "LEGOLAND Japan", "description": "適合 2-12 歲，設施溫和。推薦「得寶谷 (Duplo Valley)」給 2 歲兒子。", "icon": "<i data-lucide='blocks'></i>", "category": "attraction", "coordinates": { "lat": 35.0447, "lng": 136.8444 } },
                 { "id": "d3-e2", "time": "12:00", "endTime": "13:00", "title": "午餐：Knight's Table", "titleEn": "Lunch: Knight's Table", "description": "樂高樂園內餐廳，空間大，有兒童餐。", "icon": "<i data-lucide='utensils'></i>", "category": "food", "coordinates": { "lat": 35.0447, "lng": 136.8444 } },
                 { "id": "d3-e3", "time": "14:30", "endTime": "16:30", "title": "磁浮鐵道館", "titleEn": "SCMAGLEV and Railway Park", "description": "樂高樂園對面。歷代新幹線實車展示、巨大鐵道模型場景。", "icon": "<i data-lucide='train-front'></i>", "category": "attraction", "coordinates": { "lat": 35.0431, "lng": 136.8486 } },
-                { "id": "d3-e4", "time": "18:00", "endTime": "19:30", "title": "晚餐：壽司郎 榮店", "titleEn": "Dinner: Sushiro Sakae", "description": "Maruei Galleria 1F，迴轉壽司。請務必先用 App 預約時段。", "icon": "<i data-lucide='fish'></i>", "category": "food", "coordinates": { "lat": 35.1668, "lng": 136.9069 } }
+                { "id": "d3-e4", "time": "18:00", "endTime": "19:30", "title": "晚餐：壽司郎 榮店", "titleEn": "Dinner: Sushiro Sakae", "description": "Maruei Galleria 1F，迴轉壽司。請務必先用 App 預約時段。", "icon": "<i data-lucide='circle-dot'></i>", "category": "food", "coordinates": { "lat": 35.1668, "lng": 136.9069 } }
             ]
         },
         {
             "day": 4, "date": "2026-02-23", "dayOfWeek": "一", "theme": "水族館與購物盛典", "note": "國定假日",
             "events": [
                 { "id": "d4-e1", "time": "09:30", "endTime": "12:00", "title": "名古屋港水族館", "titleEn": "Port of Nagoya Aquarium", "description": "日本最大水槽、虎鯨與海豚表演。假日人多，建議 09:30 開館前抵達。", "icon": "<i data-lucide='fish'></i>", "category": "attraction", "coordinates": { "lat": 35.0843, "lng": 136.8786 } },
-                { "id": "d4-e2", "time": "12:30", "endTime": "13:30", "title": "午餐：LaLaport 美食街", "titleEn": "Lunch: LaLaport Food Court", "description": "LaLaport 名古屋港 3F 美食街，選擇多樣。", "icon": "<i data-lucide='soup'></i>", "category": "food", "coordinates": { "lat": 35.0869, "lng": 136.8788 } },
+                { "id": "d4-e2", "time": "12:30", "endTime": "13:30", "title": "午餐：LaLaport 美食街", "titleEn": "Lunch: LaLaport Food Court", "description": "LaLaport 名古屋港 3F 美食街，選擇多樣。", "icon": "<i data-lucide='sandwich'></i>", "category": "food", "coordinates": { "lat": 35.0869, "lng": 136.8788 } },
                 { "id": "d4-e3", "time": "14:00", "endTime": "17:00", "title": "LaLaport 購物 & 阿卡將", "titleEn": "Shopping at LaLaport & Akachan", "description": "採買兒童用品、藥妝、伴手禮。阿卡將在 3F。", "icon": "<i data-lucide='shopping-cart'></i>", "category": "shopping", "coordinates": { "lat": 35.0869, "lng": 136.8788 } },
                 { "id": "d4-e4", "time": "17:30", "endTime": "19:00", "title": "晚餐：利久牛舌 / 雞三和", "titleEn": "Dinner: Rikyu / Torisanwa", "description": "LaLaport 館內用餐，包車載戰利品回飯店。", "icon": "<i data-lucide='drumstick'></i>", "category": "food", "coordinates": { "lat": 35.0869, "lng": 136.8788 } }
             ]
@@ -80,7 +80,7 @@ const EMBEDDED_ITINERARY_DATA = {
             "events": [
                 { "id": "d5-e1", "time": "09:00", "endTime": "11:00", "title": "熱田神宮", "titleEn": "Atsuta Shrine", "description": "日本三大神宮之一，參天古樹。地面多碎石，包車司機可停在離本殿最近入口。", "icon": "<i data-lucide='landmark'></i>", "category": "attraction", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
                 { "id": "d5-e2", "time": "11:30", "endTime": "12:30", "title": "午餐：宮きしめん", "titleEn": "Lunch: Miya Kishimen", "description": "神宮境內。在樹林下吃寬扁麵，湯頭清爽，別有風味。", "icon": "<i data-lucide='soup'></i>", "category": "food", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
-                { "id": "d5-e3", "time": "13:30", "endTime": "15:00", "title": "前往機場 & 採買", "titleEn": "Head to Airport & Shopping", "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。", "icon": "<i data-lucide='plane-takeoff'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
+                { "id": "d5-e3", "time": "13:30", "endTime": "15:00", "title": "前往機場 & 採買", "titleEn": "Head to Airport & Shopping", "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。", "icon": "<i data-lucide='car'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
                 { "id": "d5-e4", "time": "16:40", "endTime": "19:15", "title": "返程航班 CX531", "titleEn": "Return Flight CX531", "description": "名古屋 16:40 起飛 → 台北 19:15 抵達", "icon": "<i data-lucide='plane'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } }
             ]
         }

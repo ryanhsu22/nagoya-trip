@@ -1876,3 +1876,32 @@ body.drawer-open .side-drawer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* ============================================
+   MAP MARKER ICONS (LUCIDE SUPPORT)
+   ============================================ */
+.custom-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.map-marker {
+    transition: transform var(--transition-fast);
+}
+
+.map-marker:hover {
+    transform: scale(1.1);
+}
+
+.map-marker .marker-icon svg,
+.map-marker .marker-icon i {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+.map-marker.active .marker-icon svg,
+.map-marker.active .marker-icon i {
+    stroke: var(--color-black, #1A1A2E);
+}

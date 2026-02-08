@@ -26,10 +26,11 @@ class MapManager {
             zoomControl: true
         });
 
-        // 使用 Wikimedia Maps (色彩豐富，資訊完整，風格清晰)
-        L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
-            attribution: '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
-            maxZoom: 19
+        // 使用 CartoDB Voyager (現代風格，穩定可靠)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 19,
+            subdomains: 'abcd'
         }).addTo(this.map);
 
         this.markerGroup = L.featureGroup().addTo(this.map);
@@ -51,24 +52,53 @@ class MapManager {
     }
 
     /**
-     * 建立自訂圖標
+     * 建立自訂圖標 (支援 Lucide Icons 和類別配色)
+     * @param {string} iconHtml - Lucide icon HTML
+     * @param {string} category - Event category (food, attraction, transport, etc.)
      */
-    createCustomIcon(emoji, isActive = false) {
-        const size = isActive ? 40 : 32;
+    createCustomIcon(iconHtml, category = 'attraction') {
+        const size = 36;
+        const iconSize = 18;
+
+        // 根據類別設定顏色
+        let bgColor, borderColor, iconColor;
+        switch (category) {
+            case 'food':
+                // 用餐: 橘色 (Claude 品牌色)
+                bgColor = '#DA7756';
+                borderColor = '#1A1A2E';
+                iconColor = '#FFFFFF';
+                break;
+            case 'attraction':
+            case 'transport':
+            default:
+                // 景點/機場: 金色
+                bgColor = '#E9A23B';
+                borderColor = '#1A1A2E';
+                iconColor = '#1A1A2E';
+                break;
+        }
+
         return L.divIcon({
             className: 'custom-marker',
-            html: `<div style="
+            html: `<div class="map-marker" style="
                 width: ${size}px;
                 height: ${size}px;
-                background: ${isActive ? '#FF4500' : '#000000'};
-                border: 3px solid ${isActive ? '#000000' : '#FFFFFF'};
+                background: ${bgColor};
+                border: 3px solid ${borderColor};
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: ${isActive ? '20px' : '16px'};
                 box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
-            ">${emoji}</div>`,
+                color: ${iconColor};
+            "><span class="marker-icon" style="
+                width: ${iconSize}px;
+                height: ${iconSize}px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">${iconHtml}</span></div>`,
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2]
         });
@@ -86,7 +116,7 @@ class MapManager {
             if (!event.coordinates) return;
 
             const isActive = event.id === currentEventId;
-            const icon = this.createCustomIcon(event.icon, isActive);
+            const icon = this.createCustomIcon(event.icon, event.category);
 
             const marker = L.marker(
                 [event.coordinates.lat, event.coordinates.lng],
@@ -125,6 +155,13 @@ class MapManager {
             this.map.fitBounds(this.markerGroup.getBounds(), {
                 padding: [50, 50]
             });
+        }
+
+        // 渲染 Lucide Icons
+        if (typeof lucide !== 'undefined') {
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
         }
     }
 
