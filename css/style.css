@@ -603,7 +603,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
     border-bottom: var(--border-style);
 }
 
@@ -2000,12 +2000,12 @@ body.drawer-open .side-drawer {
    PAGE CONTAINER - MAP OPEN STATE
    ============================================ */
 .page-container.map-open {
-    padding-bottom: 50vh;
+    padding-bottom: calc(50vh - 10px);
 }
 
 @media (max-width: 640px) {
     .page-container.map-open {
-        padding-bottom: 60vh;
+        padding-bottom: calc(60vh - 10px);
     }
 }
 
@@ -2037,7 +2037,7 @@ body.drawer-open .side-drawer {
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, var(--color-orange) 20%, var(--color-orange) 80%, transparent 100%);
-    opacity: 0.3;
+    opacity: 0.2;
     transform: translateY(-50%);
 }
 
