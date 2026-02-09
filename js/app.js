@@ -485,10 +485,27 @@ function highlightCurrentEvent() {
 async function initNotifications() {
     const hasPermission = await notificationManager.init();
 
-    // 通知按鈕
-    document.getElementById('notificationBtn').addEventListener('click', () => {
+    // 通知按鈕 - 一鍵設定當日所有提醒
+    document.getElementById('notificationBtn').addEventListener('click', async () => {
         if (notificationManager.permission === 'granted') {
-            alert('✅ 通知已開啟\n\n點擊行程卡片的 REMIND 按鈕可設定個別提醒。');
+            // 設定當日所有即將到來的行程提醒
+            if (!window.itineraryData || !window.currentDayNumber) {
+                alert('無法設定提醒：資料未載入');
+                return;
+            }
+
+            const dayData = window.itineraryData.days.find(d => d.day === window.currentDayNumber);
+            if (!dayData || !dayData.events) {
+                alert('無法設定提醒：找不到當日資料');
+                return;
+            }
+
+            const count = notificationManager.setAllRemindersForDay(dayData.events, dayData.date);
+            if (count > 0) {
+                alert(`✅ 已設定 ${count} 個行程提醒！\n\n所有即將到來的行程將在開始前 15 分鐘提醒您。`);
+            } else {
+                alert('目前沒有即將到來的行程可設定提醒。');
+            }
         } else {
             notificationManager.showPermissionModal();
         }

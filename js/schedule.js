@@ -16,14 +16,14 @@ class ScheduleManager {
     getCurrentTripDay() {
         const now = new Date();
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        
+
         for (let i = 0; i < this.data.days.length; i++) {
             const dayDate = new Date(this.data.days[i].date);
             if (today.getTime() === dayDate.getTime()) {
                 return i + 1;
             }
         }
-        
+
         if (today < this.tripStartDate) return 0;
         if (today > this.tripEndDate) return -1;
         return 0;
@@ -45,7 +45,7 @@ class ScheduleManager {
 
         const now = new Date();
         const today = new Date(dayData.date);
-        
+
         // 如果不是今天，返回 0% 或 100%
         if (now.toDateString() !== today.toDateString()) {
             return now < today ? 0 : 100;
@@ -77,7 +77,7 @@ class ScheduleManager {
 
         const now = new Date();
         const today = new Date(dayData.date);
-        
+
         // 如果不是今天，返回 null
         if (now.toDateString() !== today.toDateString()) {
             return null;
@@ -86,7 +86,7 @@ class ScheduleManager {
         for (const event of dayData.events) {
             const startTime = this.parseTime(event.time, dayData.date);
             const endTime = this.parseTime(event.endTime, dayData.date);
-            
+
             if (now >= startTime && now <= endTime) {
                 return event;
             }
@@ -103,7 +103,7 @@ class ScheduleManager {
 
         const now = new Date();
         const today = new Date(dayData.date);
-        
+
         if (now.toDateString() !== today.toDateString()) {
             return [];
         }
@@ -113,7 +113,7 @@ class ScheduleManager {
 
         for (const event of dayData.events) {
             const startTime = this.parseTime(event.time, dayData.date);
-            
+
             if (startTime > now && startTime <= cutoffTime) {
                 upcoming.push({
                     ...event,
@@ -130,7 +130,7 @@ class ScheduleManager {
     getEventStatus(event, dayData) {
         const now = new Date();
         const today = new Date(dayData.date);
-        
+
         // 不是今天的情況
         if (now.toDateString() !== today.toDateString()) {
             return now > today ? 'completed' : 'future';
@@ -141,13 +141,13 @@ class ScheduleManager {
 
         if (now > endTime) return 'completed';
         if (now >= startTime && now <= endTime) return 'current';
-        
+
         // 15 分鐘內即將開始
         const fifteenMinutes = 15 * 60000;
         if (startTime - now <= fifteenMinutes && startTime > now) {
             return 'upcoming';
         }
-        
+
         return 'future';
     }
 
@@ -177,12 +177,12 @@ class ScheduleManager {
      */
     getProgressStatusText(dayNumber) {
         const currentTripDay = this.getCurrentTripDay();
-        
+
         if (currentTripDay === 0) {
             const daysUntil = Math.ceil((this.tripStartDate - new Date()) / (1000 * 60 * 60 * 24));
             return `距離出發還有 ${daysUntil} 天`;
         }
-        
+
         if (currentTripDay === -1) {
             return '旅程已結束';
         }
@@ -216,7 +216,7 @@ class ScheduleManager {
 function renderTimeline(scheduleManager, dayNumber) {
     const timeline = document.getElementById('timeline');
     const dayData = scheduleManager.getDayData(dayNumber);
-    
+
     if (!dayData) {
         timeline.innerHTML = '<p class="no-events">此日無行程資料</p>';
         return;
@@ -224,9 +224,9 @@ function renderTimeline(scheduleManager, dayNumber) {
 
     timeline.innerHTML = dayData.events.map(event => {
         const status = scheduleManager.getEventStatus(event, dayData);
-        const statusClass = status === 'current' ? 'current' : 
-                           status === 'completed' ? 'completed' : '';
-        
+        const statusClass = status === 'current' ? 'current' :
+            status === 'completed' ? 'completed' : '';
+
         return `
             <article class="event-card ${statusClass}" data-event-id="${event.id}">
                 <div class="event-time">
@@ -242,11 +242,10 @@ function renderTimeline(scheduleManager, dayNumber) {
                 </div>
                 <p class="event-description">${event.description}</p>
                 <div class="event-actions">
-                    <button class="btn-event" onclick="showEventOnMap('${event.id}')">
-                        📍 MAP
-                    </button>
-                    <button class="btn-event accent" onclick="setReminder('${event.id}')">
-                        ⏰ REMIND
+                    <button class="btn-map-tech" onclick="showEventOnMap('${event.id}')">
+                        <span class="btn-map-dot"></span>
+                        <span class="btn-map-text">MAP</span>
+                        <span class="btn-map-line"></span>
                     </button>
                 </div>
             </article>
@@ -260,7 +259,7 @@ function renderTimeline(scheduleManager, dayNumber) {
 function updateProgress(scheduleManager, dayNumber) {
     const progress = scheduleManager.calculateDayProgress(dayNumber);
     const statusText = scheduleManager.getProgressStatusText(dayNumber);
-    
+
     document.getElementById('progressBar').style.width = `${progress}%`;
     document.getElementById('progressPercent').textContent = `${progress}%`;
     document.getElementById('progressStatus').textContent = statusText;
