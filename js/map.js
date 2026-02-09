@@ -302,14 +302,32 @@ window.mapManager = new MapManager();
 function showEventOnMap(eventId) {
     const mapSection = document.getElementById('mapSection');
 
-    // 如果地圖隱藏，先顯示
+    // 如果地圖隱藏，先顯示並載入標記
     if (mapSection.classList.contains('hidden')) {
         mapManager.toggle();
-        // 等待動畫完成後聚焦
-        setTimeout(() => {
-            mapManager.focusEvent(eventId);
-        }, 400);
+
+        // 載入當日事件（使用全域變數）
+        const dayNumber = window.currentDayNumber || 1;
+        const dayData = window.scheduleManager?.getDayData(dayNumber) ||
+            window.itineraryData?.days?.find(d => d.day === dayNumber);
+
+        if (dayData && dayData.events) {
+            // 等待地圖初始化完成後載入標記
+            setTimeout(() => {
+                mapManager.loadDayEvents(dayData.events);
+                // 再等待標記載入後聚焦
+                setTimeout(() => {
+                    mapManager.focusEvent(eventId);
+                }, 300);
+            }, 350);
+        } else {
+            // 如果沒有資料，至少嘗試聚焦
+            setTimeout(() => {
+                mapManager.focusEvent(eventId);
+            }, 400);
+        }
     } else {
         mapManager.focusEvent(eventId);
     }
 }
+

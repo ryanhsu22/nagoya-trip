@@ -1963,11 +1963,11 @@ body.drawer-open .side-drawer {
    PAGE CONTAINER - MAP OPEN STATE
    ============================================ */
 .page-container.map-open {
-    padding-bottom: 52vh;
+    padding-bottom: calc(50vh + 20px);
 }
 
 @media (max-width: 640px) {
     .page-container.map-open {
-        padding-bottom: 62vh;
+        padding-bottom: calc(60vh + 20px);
     }
 }
