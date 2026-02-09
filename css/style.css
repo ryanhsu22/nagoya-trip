@@ -1909,10 +1909,37 @@ body.drawer-open .side-drawer {
 /* ============================================
    GOOGLE MAPS INFOWINDOW STYLES
    ============================================ */
+
+/* Popup animation */
+@keyframes popupSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popupPulse {
+
+    0%,
+    100% {
+        box-shadow: var(--shadow-brutal-sm);
+    }
+
+    50% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+}
+
 .gm-popup {
     padding: 0;
     min-width: 120px;
     font-family: var(--font-body);
+    animation: popupSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .gm-popup-title {
@@ -1935,16 +1962,26 @@ body.drawer-open .side-drawer {
     border-radius: 0 !important;
     box-shadow: var(--shadow-brutal-sm) !important;
     padding: 0 !important;
+    animation: popupPulse 0.6s ease-out;
 }
 
 .gm-style-iw-c {
-    padding: 12px !important;
+    padding: 6px 8px !important;
     border-radius: 0 !important;
+    background: #FFFFFF !important;
+    border: 2px solid var(--color-black) !important;
+    max-height: none !important;
 }
 
 .gm-style-iw-d {
-    overflow: hidden !important;
+    overflow: visible !important;
     padding: 0 !important;
+    max-height: none !important;
+}
+
+/* 移除 InfoWindow 內部多餘空間 */
+.gm-style-iw-chr {
+    display: none !important;
 }
 
 /* Remove the arrow/tail */
@@ -1963,11 +2000,11 @@ body.drawer-open .side-drawer {
    PAGE CONTAINER - MAP OPEN STATE
    ============================================ */
 .page-container.map-open {
-    padding-bottom: calc(50vh + 20px);
+    padding-bottom: calc(50vh + 8px);
 }
 
 @media (max-width: 640px) {
     .page-container.map-open {
-        padding-bottom: calc(60vh + 20px);
+        padding-bottom: calc(60vh + 8px);
     }
 }
