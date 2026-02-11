@@ -189,6 +189,24 @@ class MapManager {
     }
 
     /**
+     * 清理搜尋結果與狀態
+     */
+    clearSearch() {
+        if (this.searchMarker) {
+            this.searchMarker.setMap(null);
+            this.searchMarker = null;
+        }
+        if (this.infoWindow) {
+            this.infoWindow.close();
+        }
+        const input = document.getElementById('mapSearchInput');
+        if (input) {
+            input.value = '';
+            input.blur();
+        }
+    }
+
+    /**
      * 建立自訂圖標 SVG (包含對應的 Lucide Icon)
      * @param {string} iconHtml - Icon HTML 字串 (例如 "<i data-lucide='castle'></i>")
      * @param {string} category - Event category (food, attraction, transport, etc.)
