@@ -44,7 +44,7 @@ const EMBEDDED_ITINERARY_DATA = {
             "day": 1, "date": "2026-02-20", "dayOfWeek": "五", "theme": "抵達與頂級燒肉",
             "events": [
                 { "id": "d1-e1", "time": "15:35", "endTime": "16:30", "title": "抵達中部國際機場", "titleEn": "Arrive at Chubu Centrair Airport", "description": "搭乘 μ-SKY 列車 (約 28 分鐘) 直達名古屋車站", "icon": "<i data-lucide='plane'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
-                { "id": "d1-e2", "time": "17:00", "endTime": "17:30", "title": "飯店 Check-in", "titleEn": "Hotel Check-in", "description": "轉乘計程車 (約 5 分鐘) 前往飯店 Check-in 與休息", "icon": "<i data-lucide='bed-double'></i>", "category": "hotel", "coordinates": { "lat": 35.16985781333653, "lng": 136.8909969625687 } },
+                { "id": "d1-e2", "time": "17:00", "endTime": "17:30", "title": "飯店 Check-in", "titleEn": "Hotel Check-in", "description": "轉乘計程車 (約 5 分鐘) 前往飯店「名古屋日航尚格酒店」 Check-in 與休息", "icon": "<i data-lucide='bed-double'></i>", "category": "hotel", "coordinates": { "lat": 35.16985781333653, "lng": 136.8909969625687 } },
                 { "id": "d1-e3", "time": "18:30", "endTime": "20:30", "title": "晚餐：牛ざんまい 納屋橋", "titleEn": "Dinner: Gyuzanmai Nayabashi", "description": "飛騨牛燒肉，位於納屋橋河畔，氣氛極佳，高 CP 值", "icon": "<i data-lucide='beef'></i>", "category": "food", "coordinates": { "lat": 35.16821783963066, "lng": 136.89187242080152 } }
             ]
         },
@@ -80,7 +80,7 @@ const EMBEDDED_ITINERARY_DATA = {
             "events": [
                 { "id": "d5-e1", "time": "09:00", "endTime": "11:00", "title": "熱田神宮", "titleEn": "Atsuta Shrine", "description": "日本三大神宮之一，參天古樹。地面多碎石，包車司機可停在離本殿最近入口。", "icon": "<i data-lucide='landmark'></i>", "category": "attraction", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
                 { "id": "d5-e2", "time": "11:30", "endTime": "12:30", "title": "午餐：宮きしめん", "titleEn": "Lunch: Miya Kishimen", "description": "神宮境內。在樹林下吃寬扁麵，湯頭清爽，別有風味。", "icon": "<i data-lucide='soup'></i>", "category": "food", "coordinates": { "lat": 35.1280, "lng": 136.9088 } },
-                { "id": "d5-e3", "time": "13:30", "endTime": "15:00", "title": "前往機場 & 採買", "titleEn": "Head to Airport & Shopping", "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。", "icon": "<i data-lucide='car-taxi-front'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
+                { "id": "d5-e3", "time": "13:00", "endTime": "14:40", "title": "拿行李出發去機場", "titleEn": "Pick up Luggage & Head to Airport", "description": "回飯店拿行李後，搭計程車出發去機場", "icon": "<i data-lucide='car-taxi-front'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } },
                 { "id": "d5-e4", "time": "16:40", "endTime": "19:15", "title": "返程航班 CX531", "titleEn": "Return Flight CX531", "description": "名古屋 16:40 起飛 → 台北 19:15 抵達", "icon": "<i data-lucide='plane'></i>", "category": "transport", "coordinates": { "lat": 34.8584, "lng": 136.8074 } }
             ]
         }
@@ -538,17 +538,35 @@ function initMapControls() {
 
         // 載入當日景點
         if (!document.getElementById('mapSection').classList.contains('hidden')) {
+            // 開啟時為所有 MAP 按鈕添加動畫類別
+            document.querySelectorAll('.btn-map-tech').forEach(btn => {
+                btn.classList.add('map-active');
+            });
+
             const dayData = scheduleManager.getDayData(currentDayNumber);
             if (dayData) {
                 const currentEvent = scheduleManager.getCurrentEvent(currentDayNumber);
                 mapManager.loadDayEvents(dayData.events, currentEvent?.id);
             }
+        } else {
+            // 關閉時移除類別
+            document.querySelectorAll('.btn-map-tech').forEach(btn => {
+                btn.classList.remove('map-active');
+            });
+            // 關閉地圖時移除所有卡片的 Focus 樣式
+            document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
         }
     });
 
     // 關閉地圖按鈕
     document.getElementById('mapCloseBtn').addEventListener('click', () => {
         mapManager.hide();
+        // 移除所有 MAP 按鈕的 map-active 狀態（停止脈動動畫）
+        document.querySelectorAll('.btn-map-tech').forEach(btn => {
+            btn.classList.remove('map-active');
+        });
+        // 關閉地圖時移除所有卡片的 Focus 樣式
+        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
     });
 }
 

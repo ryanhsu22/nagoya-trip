@@ -76,7 +76,7 @@
           "endTime": "17:30",
           "title": "飯店 Check-in",
           "titleEn": "Hotel Check-in",
-          "description": "轉乘計程車 (約 5 分鐘) 前往飯店 Check-in 與休息",
+          "description": "轉乘計程車 (約 5 分鐘) 前往飯店「名古屋日航尚格酒店」 Check-in 與休息",
           "icon": "🏨",
           "category": "hotel",
           "coordinates": {
@@ -330,11 +330,11 @@
         },
         {
           "id": "d5-e3",
-          "time": "13:30",
-          "endTime": "15:00",
-          "title": "前往機場 & 採買",
-          "titleEn": "Head to Airport & Shopping",
-          "description": "機場 4F「藍天城」採買伴手禮（蝦餅、小雞蛋糕）。",
+          "time": "13:00",
+          "endTime": "14:40",
+          "title": "拿行李出發去機場",
+          "titleEn": "Pick up Luggage & Head to Airport",
+          "description": "回飯店拿行李後，搭計程車出發去機場",
           "icon": "🛫",
           "category": "transport",
           "coordinates": {

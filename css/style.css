@@ -15,6 +15,7 @@
     --color-teal: #5BBFBA;
     --color-gray: #6B7280;
     --color-gray-light: #9CA3AF;
+    --color-orange: #FF6B35;
     --color-success: #10B981;
     --color-warning: #F59E0B;
     --color-danger: #EF4444;
@@ -441,9 +442,27 @@ body {
     background-color: var(--color-white);
     border: var(--border-style);
     padding: var(--spacing-lg);
-    transition: all var(--transition-fast);
+    /* 使用更短的 0.25s 與標準 ease-out，防止瀏覽器在動畫末端產生殘影 */
+    transition:
+        transform 0.25s ease-out,
+        box-shadow 0.25s ease-out,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        margin-top 0.25s ease-out;
     position: relative;
     box-shadow: var(--shadow-brutal);
+    scroll-margin-top: 100px;
+}
+
+/* 被選中時的「浮起來」效果 */
+.event-card.focused-float,
+.event-card.focused-float:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 4px 4px 0 var(--color-orange);
+    border-color: var(--color-orange);
+    z-index: 10;
+    margin-top: 12px;
+    /* 補償 translateY(-12px) 產生的間距縮減 */
 }
 
 .event-card:hover {
@@ -2000,12 +2019,12 @@ body.drawer-open .side-drawer {
    PAGE CONTAINER - MAP OPEN STATE
    ============================================ */
 .page-container.map-open {
-    padding-bottom: calc(50vh - 10px);
+    padding-bottom: calc(50vh - 40px);
 }
 
 @media (max-width: 640px) {
     .page-container.map-open {
-        padding-bottom: calc(60vh - 10px);
+        padding-bottom: calc(60vh - 40px);
     }
 }
 
@@ -2029,23 +2048,21 @@ body.drawer-open .side-drawer {
     transition: all 0.2s ease;
 }
 
-.btn-map-tech::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--color-orange) 20%, var(--color-orange) 80%, transparent 100%);
-    opacity: 0.2;
-    transform: translateY(-50%);
-}
+/* 移除背景半透明線條 */
 
 .btn-map-dot {
     width: 6px;
     height: 6px;
     background: var(--color-orange);
     border-radius: 50%;
+    box-shadow: 0 0 4px var(--color-orange);
+    transition: all 0.3s ease;
+    opacity: 1;
+    /* 預設可見 */
+}
+
+/* 脈動動畫只在地圖開啟後啟動 */
+.btn-map-tech.map-active .btn-map-dot {
     box-shadow: 0 0 8px var(--color-orange);
     animation: pulse-dot 2s infinite;
 }

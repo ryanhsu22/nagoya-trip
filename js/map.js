@@ -400,6 +400,36 @@ function showEventOnMap(eventId) {
         }
     }
 
+    // 同步：點擊特定卡片時，讓該卡片「浮起來」並捲動到上方區域正中央
+    const focusedCard = document.querySelector(`.event-card[data-event-id=\"${eventId}\"]`);
+    if (focusedCard) {
+        // 移除其他卡片的 Focus 樣式
+        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
+
+        // 加入浮動樣式
+        focusedCard.classList.add('focused-float');
+
+        // 延遲一下捲動，確保地圖開啟的間距已由 CSS 更新
+        setTimeout(() => {
+            const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+            const mapHeight = mapSection.classList.contains('hidden') ? 0 : mapSection.offsetHeight;
+            const viewAreaHeight = window.innerHeight - headerHeight - mapHeight;
+
+            const cardRect = focusedCard.getBoundingClientRect();
+            const scrollOffset = window.pageYOffset + cardRect.top - headerHeight - (viewAreaHeight / 2) + (cardRect.height / 2);
+
+            window.scrollTo({
+                top: scrollOffset,
+                behavior: 'smooth'
+            });
+        }, 150); // 速度略快，速度感更好
+    }
+
+    // 為所有 MAP 按鈕添加 map-active 狀態（啟動脈動動畫）
+    document.querySelectorAll('.btn-map-tech').forEach(btn => {
+        btn.classList.add('map-active');
+    });
+
     // 如果地圖隱藏，先找到目標事件的座標，再初始化地圖
     if (mapSection.classList.contains('hidden')) {
         // 以目標座標初始化地圖
