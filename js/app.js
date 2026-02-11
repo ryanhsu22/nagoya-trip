@@ -538,10 +538,12 @@ function initMapControls() {
 
         // 載入當日景點
         if (!document.getElementById('mapSection').classList.contains('hidden')) {
-            // 開啟時為所有 MAP 按鈕添加動畫類別
-            document.querySelectorAll('.btn-map-tech').forEach(btn => {
-                btn.classList.add('map-active');
-            });
+            // 開啟時，如果行程中有當前正在進行的項目，讓它的 MAP 按鈕發光
+            const currentEvent = scheduleManager.getCurrentEvent(currentDayNumber);
+            if (currentEvent) {
+                const btn = document.querySelector(`.event-card[data-event-id="${currentEvent.id}"] .btn-map-tech`);
+                if (btn) btn.classList.add('map-active');
+            }
 
             const dayData = scheduleManager.getDayData(currentDayNumber);
             if (dayData) {

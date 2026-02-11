@@ -269,15 +269,16 @@ class MapManager {
             this.map.setCenter(focusPosition);
             this.map.setZoom(15);
 
-            // 先讓 marker 彈跳一下，再開啟 InfoWindow
+            // 讓 marker 彈跳與 InfoWindow 同時開啟，並統一步位時間
             setTimeout(() => {
                 focusMarker.setAnimation(google.maps.Animation.BOUNCE);
-                // 彈跳一小段時間後停止並開啟 InfoWindow
+                google.maps.event.trigger(focusMarker, 'click');
+
+                // 0.6s 後停止彈跳，對齊 InfoWindow 的動畫呈現
                 setTimeout(() => {
                     focusMarker.setAnimation(null);
-                    google.maps.event.trigger(focusMarker, 'click');
-                }, 400);
-            }, 150);
+                }, 600);
+            }, 100);
         } else if (this.markers.length > 0) {
             // 沒有指定聚焦，則 fitBounds 顯示所有標記
             this.map.fitBounds(this.bounds, {
@@ -299,25 +300,26 @@ class MapManager {
             if (currentZoom < 14) {
                 // 先移動到目標位置（有動畫）
                 this.map.panTo(position);
-                // 等待移動完成後再 zoom in
+                // 等待移動完成後同時觸發
                 setTimeout(() => {
                     this.map.setZoom(15);
-                    // 彈跳動畫
                     marker.setAnimation(google.maps.Animation.BOUNCE);
+                    google.maps.event.trigger(marker, 'click');
+
                     setTimeout(() => {
                         marker.setAnimation(null);
-                        google.maps.event.trigger(marker, 'click');
-                    }, 400);
+                    }, 600);
                 }, 300);
             } else {
-                // 已經在較近的 zoom，直接定位
+                // 已經在較近的 zoom，直接定位並同步觸發
                 this.map.setCenter(position);
                 this.map.setZoom(15);
                 marker.setAnimation(google.maps.Animation.BOUNCE);
+                google.maps.event.trigger(marker, 'click');
+
                 setTimeout(() => {
                     marker.setAnimation(null);
-                    google.maps.event.trigger(marker, 'click');
-                }, 400);
+                }, 600);
             }
         }
     }
@@ -425,10 +427,12 @@ function showEventOnMap(eventId) {
         }, 150); // 速度略快，速度感更好
     }
 
-    // 為所有 MAP 按鈕添加 map-active 狀態（啟動脈動動畫）
-    document.querySelectorAll('.btn-map-tech').forEach(btn => {
-        btn.classList.add('map-active');
-    });
+    // 只為當前點選的卡片的 MAP 按鈕添加 map-active 狀態
+    document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
+    if (focusedCard) {
+        const btn = focusedCard.querySelector('.btn-map-tech');
+        if (btn) btn.classList.add('map-active');
+    }
 
     // 如果地圖隱藏，先找到目標事件的座標，再初始化地圖
     if (mapSection.classList.contains('hidden')) {

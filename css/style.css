@@ -442,14 +442,17 @@ body {
     background-color: var(--color-white);
     border: var(--border-style);
     padding: var(--spacing-lg);
-    /* 使用更短的 0.25s 與標準 ease-out，防止瀏覽器在動畫末端產生殘影 */
+    position: relative;
+    top: 0;
+    left: 0;
+    /* 針對位移屬性進行動畫，避免 transform 點陣圖模糊 */
     transition:
-        transform 0.25s ease-out,
+        top 0.25s ease-out,
+        left 0.25s ease-out,
+        margin-top 0.25s ease-out,
         box-shadow 0.25s ease-out,
         border-color 0.2s ease,
-        background-color 0.2s ease,
-        margin-top 0.25s ease-out;
-    position: relative;
+        background-color 0.2s ease;
     box-shadow: var(--shadow-brutal);
     scroll-margin-top: 100px;
 }
@@ -457,16 +460,17 @@ body {
 /* 被選中時的「浮起來」效果 */
 .event-card.focused-float,
 .event-card.focused-float:hover {
-    transform: translateY(-12px);
+    top: -12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 4px 4px 0 var(--color-orange);
     border-color: var(--color-orange);
     z-index: 10;
     margin-top: 12px;
-    /* 補償 translateY(-12px) 產生的間距縮減 */
+    /* 補償 top: -12px 產生的空間位移 */
 }
 
 .event-card:hover {
-    transform: translate(-2px, -2px);
+    top: -2px;
+    left: -2px;
     box-shadow: 6px 6px 0 var(--color-black);
 }
 
@@ -1958,7 +1962,8 @@ body.drawer-open .side-drawer {
     padding: 0;
     min-width: 120px;
     font-family: var(--font-body);
-    animation: popupSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    /* 統一動畫時長為 0.6s 以同步標記彈跳 */
+    animation: popupSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .gm-popup-title {
@@ -2045,7 +2050,8 @@ body.drawer-open .side-drawer {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    transition: all 0.2s ease;
+    /* 移除 transition: all，僅針對顏色動畫以避免與點的動畫衝突 */
+    transition: color 0.2s ease;
 }
 
 /* 移除背景半透明線條 */
@@ -2061,7 +2067,8 @@ body.drawer-open .side-drawer {
     /* 預設可見 */
 }
 
-/* 脈動動畫只在地圖開啟後啟動 */
+/* 脈動動畫只在該卡片被選中狀態下啟動 */
+.event-card.focused-float .btn-map-tech .btn-map-dot,
 .btn-map-tech.map-active .btn-map-dot {
     box-shadow: 0 0 8px var(--color-orange);
     animation: pulse-dot 2s infinite;
@@ -2097,6 +2104,8 @@ body.drawer-open .side-drawer {
 
 .btn-map-tech:hover .btn-map-dot {
     background: #FF6B35;
+    transform: scale(1.2);
+    /* 縮放一致 */
     box-shadow: 0 0 12px #FF6B35;
 }
 
@@ -2106,6 +2115,8 @@ body.drawer-open .side-drawer {
 
 .btn-map-tech:hover .btn-map-line::after {
     background: #FF6B35;
+    transform: translateY(-50%) scale(1.2);
+    /* 連帶線段末端圓點也縮放 */
 }
 
 @keyframes pulse-dot {
