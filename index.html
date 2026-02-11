@@ -276,6 +276,11 @@
     <section class="map-section hidden" id="mapSection">
         <div class="map-header">
             <h2 class="map-title">INTERACTIVE MAP</h2>
+            <div class="map-search-container">
+                <input type="text" id="mapSearchInput" placeholder="搜尋地點 (餐廳、車站、商店...)" class="map-search-input"
+                    autocomplete="off">
+                <i data-lucide="search" class="search-icon"></i>
+            </div>
             <button class="btn-close" id="mapCloseBtn"><i data-lucide="x"></i></button>
         </div>
         <div class="map-container" id="map"></div>
@@ -295,7 +300,7 @@
 
     <!-- Scripts -->
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0dZ1L3-oaD9XOPaZ90ba-1n-nlfkS8zk&callback=Function.prototype"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0dZ1L3-oaD9XOPaZ90ba-1n-nlfkS8zk&libraries=places&callback=Function.prototype"
         async defer></script>
     <script src="data/itinerary.json" type="application/json" id="itineraryData"></script>
     <script src="js/schedule.js"></script>

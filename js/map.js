@@ -95,12 +95,97 @@ class MapManager {
             ]
         });
 
+        // 預設開啟大眾運輸圖層 (Transit Layer)
+        this.transitLayer = new google.maps.TransitLayer();
+        this.transitLayer.setMap(this.map);
+
         this.infoWindow = new google.maps.InfoWindow({
             disableAutoPan: false,
             maxWidth: 250
         });
         this.bounds = new google.maps.LatLngBounds();
         this.isInitialized = true;
+
+        // 初始化搜尋列
+        this.initSearch();
+    }
+
+    /**
+     * 初始化搜尋列 (Autocomplete)
+     */
+    initSearch() {
+        const input = document.getElementById('mapSearchInput');
+        if (!input) return;
+
+        // 限制搜尋範圍在名古屋附近 (可選)
+        const nagoyaBounds = {
+            north: 35.3,
+            south: 35.0,
+            east: 137.1,
+            west: 136.7,
+        };
+
+        const autocomplete = new google.maps.places.Autocomplete(input, {
+            bounds: nagoyaBounds,
+            fields: ['geometry', 'name', 'formatted_address'],
+            strictBounds: false,
+        });
+
+        // 搜尋結果處理
+        autocomplete.addListener('place_changed', () => {
+            const place = autocomplete.getPlace();
+
+            if (!place.geometry || !place.geometry.location) {
+                console.error("未找到該地點的座標資訊");
+                return;
+            }
+
+            // 定位地圖
+            if (place.geometry.viewport) {
+                this.map.fitBounds(place.geometry.viewport);
+            } else {
+                this.map.setCenter(place.geometry.location);
+                this.map.setZoom(17);
+            }
+
+            // 放置臨時搜尋標記
+            this.addSearchMarker(place);
+        });
+    }
+
+    /**
+     * 增加搜尋結果標記
+     */
+    addSearchMarker(place) {
+        // 移除舊的搜尋標記 (如果有)
+        if (this.searchMarker) {
+            this.searchMarker.setMap(null);
+        }
+
+        this.searchMarker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: this.map,
+            title: place.name,
+            icon: {
+                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                scale: 6,
+                fillColor: '#FF6B35',
+                fillOpacity: 1,
+                strokeWeight: 2,   // 恢復外框線
+                strokeColor: '#FFFFFF', // 改為白色外框
+            },
+            animation: google.maps.Animation.DROP
+        });
+
+        // 顯示資訊視窗
+        const content = `
+            <div class="gm-popup">
+                <div class="gm-popup-title">${place.name}</div>
+                <div class="gm-popup-time">${place.formatted_address || ''}</div>
+            </div>
+        `;
+        this.infoWindow.setContent(content);
+        this.infoWindow.open(this.map, this.searchMarker);
     }
 
     /**

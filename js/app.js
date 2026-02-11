@@ -551,24 +551,20 @@ function initMapControls() {
                 mapManager.loadDayEvents(dayData.events, currentEvent?.id);
             }
         } else {
-            // 關閉時移除類別
-            document.querySelectorAll('.btn-map-tech').forEach(btn => {
-                btn.classList.remove('map-active');
-            });
-            // 關閉地圖時移除所有卡片的 Focus 樣式
+            // 關閉地圖時移除所有狀態
+            document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
             document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
+            if (window.mapManager) window.mapManager.clearSearch();
         }
     });
 
     // 關閉地圖按鈕
     document.getElementById('mapCloseBtn').addEventListener('click', () => {
         mapManager.hide();
-        // 移除所有 MAP 按鈕的 map-active 狀態（停止脈動動畫）
-        document.querySelectorAll('.btn-map-tech').forEach(btn => {
-            btn.classList.remove('map-active');
-        });
-        // 關閉地圖時移除所有卡片的 Focus 樣式
+        // 關閉地圖時移除所有狀態
+        document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
         document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
+        mapManager.clearSearch();
     });
 }
 

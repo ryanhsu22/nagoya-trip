@@ -1140,6 +1140,108 @@ body.drawer-open .side-drawer {
     transform: translateX(0);
 }
 
+.drawer.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.map-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+}
+
+.map-search-container {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.map-search-input {
+    width: 100%;
+    padding: 6px 12px 6px 32px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.map-search-input:focus {
+    background-color: white;
+    color: var(--color-black);
+    border-color: var(--color-orange);
+    box-shadow: 4px 4px 0 var(--color-orange);
+}
+
+.map-search-container .search-icon {
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    height: 16px;
+    color: var(--color-orange);
+    pointer-events: none;
+}
+
+/* Google Autocomplete Styles */
+.pac-container {
+    border: 2px solid var(--color-black) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0 var(--color-black) !important;
+    font-family: var(--font-body) !important;
+    z-index: 2000 !important;
+    margin-top: 4px;
+}
+
+.pac-item {
+    padding: 8px 12px !important;
+    cursor: pointer !important;
+}
+
+.pac-item:hover {
+    background-color: var(--color-bg-alt) !important;
+}
+
+.pac-item-query {
+    font-size: 0.9rem !important;
+}
+
+.pac-matched {
+    color: var(--color-orange) !important;
+}
+
+@media (max-width: 640px) {
+    .map-header {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    .map-title {
+        order: 1;
+    }
+
+    .btn-close {
+        order: 2;
+    }
+
+    .map-search-container {
+        order: 3;
+        max-width: none;
+        width: 100%;
+    }
+}
+
 .drawer-header {
     display: flex;
     justify-content: space-between;
