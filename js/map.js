@@ -192,13 +192,18 @@ class MapManager {
      * 清理搜尋結果與狀態
      */
     clearSearch() {
+        // 移除搜尋標記
         if (this.searchMarker) {
             this.searchMarker.setMap(null);
             this.searchMarker = null;
         }
+
+        // 關閉資訊視窗
         if (this.infoWindow) {
             this.infoWindow.close();
         }
+
+        // 清空輸入框
         const input = document.getElementById('mapSearchInput');
         if (input) {
             input.value = '';

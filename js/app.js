@@ -449,6 +449,9 @@ function switchToDay(dayNumber) {
     // 高亮當前事件
     highlightCurrentEvent();
 
+    // 切換日期時清空地圖搜尋
+    if (window.mapManager) mapManager.clearSearch();
+
     if (mapManager.isInitialized) {
         const events = dayData ? dayData.events : [];
         const currentEvent = scheduleManager.getCurrentEvent(dayNumber);
@@ -554,7 +557,7 @@ function initMapControls() {
             // 關閉地圖時移除所有狀態
             document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
             document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
-            if (window.mapManager) window.mapManager.clearSearch();
+            if (window.mapManager) mapManager.clearSearch();
         }
     });
 
