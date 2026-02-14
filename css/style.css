@@ -1368,44 +1368,35 @@ body.drawer-open .side-drawer {
     background-color: var(--color-bg-alt);
     border: 2px solid var(--color-black);
     box-shadow: 3px 3px 0 var(--color-black);
-    padding: 16px;
+    padding: 14px;
     animation: drawerTipFadeIn 0.4s ease forwards;
 }
 
 .drawer-tip-label {
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    color: var(--color-gray);
+    color: var(--color-gray-light);
     letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
 .drawer-tip-title {
     font-family: var(--font-display);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-black);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     line-height: 1.4;
 }
 
 .drawer-tip-content {
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 400;
     color: var(--color-gray);
     line-height: 1.6;
-}
-
-.drawer-tip-image {
-    width: 100%;
-    max-height: 140px;
-    object-fit: cover;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 12px;
-    display: block;
 }
 
 .drawer-version {
@@ -1414,7 +1405,7 @@ body.drawer-open .side-drawer {
     font-weight: 400;
     color: var(--color-gray-light);
     text-align: center;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
     letter-spacing: 0.05em;
 }
 

@@ -2,10 +2,10 @@
  * Drawer Tips Module - 抽屜選單貼心訊息提醒
  * NAGOYA TRIP 2026
  * 
- * 三大分類：
- * 1. 行前貼心提醒（特定日期 70% / 通用 50%）
- * 2. 名古屋冷知識（隨機輪播，附配圖）
- * 3. 名古屋美食筆記（隨機輪播，附配圖）
+ * 觸發機率：
+ * 1. 行前貼心提醒：40%（特定日期事項僅在該日觸發，通用事項任何時刻皆可）
+ * 2. 名古屋冷知識：30%
+ * 3. 名古屋美食筆記：30%
  */
 
 // ============================================
@@ -20,20 +20,18 @@ const TRIP_START = new Date('2026-02-20T00:00:00+09:00');
  */
 function getTripDayNumber() {
     const now = new Date();
-    // 轉為日本時間比較
     const jpNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
     const jpStart = new Date(TRIP_START.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
 
     const diffMs = jpNow - jpStart;
-    if (diffMs < 0) return 0; // 尚未出發
+    if (diffMs < 0) return 0;
 
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    return diffDays + 1; // Day 1 = 出發當日
+    return diffDays + 1;
 }
 
-// --- 分類 1A：特定日期事項（觸發機率 70%）---
+// --- 分類 1A：特定日期事項 ---
 const DATE_REMINDERS = [
-    // 旅程開始前
     {
         id: 'r-pre-01',
         title: '護照檢查',
@@ -52,7 +50,6 @@ const DATE_REMINDERS = [
         content: '建議出發前兌換適量日幣現金，部分小店與自動販賣機僅收現金。',
         condition: (day) => day === 0
     },
-    // Day 1
     {
         id: 'r-day1-01',
         title: '出發日提醒',
@@ -65,7 +62,6 @@ const DATE_REMINDERS = [
         content: '抵達中部國際機場後，搭 μ-SKY 列車約 28 分鐘直達名古屋站。',
         condition: (day) => day === 1
     },
-    // Day 2
     {
         id: 'r-day2-01',
         title: '備長鰻魚飯已訂位',
@@ -78,7 +74,6 @@ const DATE_REMINDERS = [
         content: '名古屋城內部分碎石路，建議推車走鋪設步道，方便推行。',
         condition: (day) => day === 2
     },
-    // Day 3
     {
         id: 'r-day3-01',
         title: 'LEGOLAND 入園提醒',
@@ -91,7 +86,6 @@ const DATE_REMINDERS = [
         content: '晚餐壽司郎 (榮店)，請務必先用手機 App 預約時段。',
         condition: (day) => day === 3
     },
-    // Day 4
     {
         id: 'r-day4-01',
         title: '國定假日注意',
@@ -110,7 +104,6 @@ const DATE_REMINDERS = [
         content: 'LaLaport 3F 阿卡將本舖是採購兒童用品的好地方，記得逛一逛。',
         condition: (day) => day === 4
     },
-    // Day 5
     {
         id: 'r-day5-01',
         title: '行李重量提醒',
@@ -131,7 +124,7 @@ const DATE_REMINDERS = [
     }
 ];
 
-// --- 分類 1B：通用事項（觸發機率 50%）---
+// --- 分類 1B：通用事項（任何日期皆可觸發）---
 const GENERAL_REMINDERS = [
     {
         id: 'r-gen-01',
@@ -175,131 +168,111 @@ const GENERAL_REMINDERS = [
     }
 ];
 
-// --- 分類 2：名古屋冷知識（附配圖）---
+// --- 分類 2：名古屋冷知識 ---
 const TRIVIA_TIPS = [
     {
         id: 't-01',
         title: '金鯱傳說',
-        content: '名古屋城頂上的金鯱 (きんしゃち) 使用了 88kg 的 18K 金板打造（約等於 66kg 純金），是日本最奢華的城堡裝飾。',
-        image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?w=480&h=270&fit=crop'
+        content: '名古屋城頂上的金鯱 (きんしゃち) 使用了 88kg 的 18K 金板打造（約等於 66kg 純金），是日本最奢華的城堡裝飾。'
     },
     {
         id: 't-02',
         title: '日本的十字路口',
-        content: '名古屋是連接東京與大阪的交通樞紐，東海道新幹線在此停靠，被譽為「日本的十字路口」。',
-        image: 'https://images.unsplash.com/photo-1536183922588-166604504d5e?w=480&h=270&fit=crop'
+        content: '名古屋是連接東京與大阪的交通樞紐，東海道新幹線在此停靠，被譽為「日本的十字路口」。'
     },
     {
         id: 't-03',
         title: 'Morning 喫茶文化',
-        content: '名古屋獨特的「Morning」(モーニング) 文化：只要點一杯咖啡，就免費附贈整套吐司早餐！',
-        image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=480&h=270&fit=crop'
+        content: '名古屋獨特的「Morning」(モーニング) 文化：只要點一杯咖啡，就免費附贈整套吐司早餐！'
     },
     {
         id: 't-04',
         title: '草薙劍的守護',
-        content: '熱田神宮供奉著日本三大神器之一的「草薙劍」，每年有超過 650 萬人前來參拜。',
-        image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=480&h=270&fit=crop'
+        content: '熱田神宮供奉著日本三大神器之一的「草薙劍」，每年有超過 650 萬人前來參拜。'
     },
     {
         id: 't-05',
         title: '汽車工業之都',
-        content: '名古屋是豐田汽車的發源地，豐田產業技術紀念館展示了從紡織機到汽車的完整發展歷程。',
-        image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=480&h=270&fit=crop'
+        content: '名古屋是豐田汽車的發源地，豐田產業技術紀念館展示了從紡織機到汽車的完整發展歷程。'
     },
     {
         id: 't-06',
         title: '日本第四大城',
-        content: '名古屋是日本第四大城市，人口超過 230 萬人，中部地區的經濟與文化中心。',
-        image: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=480&h=270&fit=crop'
+        content: '名古屋是日本第四大城市，人口超過 230 萬人，中部地區的經濟與文化中心。'
     },
     {
         id: 't-07',
         title: '名古屋方言',
-        content: '名古屋方言「みゃー」(myā) 非常有特色，「うみゃー」就是「好吃」的意思！',
-        image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=480&h=270&fit=crop'
+        content: '名古屋方言「みゃー」(myā) 非常有特色，「うみゃー」就是「好吃」的意思！'
     },
     {
         id: 't-08',
         title: '地下街王國',
-        content: '名古屋站周邊的地下街總面積超過 10 萬平方公尺，是日本密度最高的地下商業區之一。',
-        image: 'https://images.unsplash.com/photo-1542931287-023b922fa89b?w=480&h=270&fit=crop'
+        content: '名古屋站周邊的地下街總面積超過 10 萬平方公尺，是日本密度最高的地下商業區之一。'
     },
     {
         id: 't-09',
         title: '大須商店街',
-        content: '大須商店街擁有超過 400 年歷史，融合了寺廟、潮流商店與多國料理，被稱為「名古屋的秋葉原」。',
-        image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=480&h=270&fit=crop'
+        content: '大須商店街擁有超過 400 年歷史，融合了寺廟、潮流商店與多國料理，被稱為「名古屋的秋葉原」。'
     },
     {
         id: 't-10',
         title: '天守閣的重建',
-        content: '名古屋城原本的天守閣在 1945 年空襲中燒毀，目前正在計畫以全木造方式忠實復原。',
-        image: 'https://images.unsplash.com/photo-1578469645742-46cae010e5d6?w=480&h=270&fit=crop'
+        content: '名古屋城原本的天守閣在 1945 年空襲中燒毀，目前正在計畫以全木造方式忠實復原。'
     }
 ];
 
-// --- 分類 3：名古屋美食筆記（附配圖）---
+// --- 分類 3：名古屋美食筆記 ---
 const FOOD_TIPS = [
     {
         id: 'f-01',
         title: '味噌煮込みうどん',
-        content: '名古屋冬天的靈魂料理，用八丁味噌慢燉的濃郁烏龍麵，打入生蛋攪拌更是一絕！',
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?w=480&h=270&fit=crop'
+        content: '名古屋冬天的靈魂料理，用八丁味噌慢燉的濃郁烏龍麵，打入生蛋攪拌更是一絕！'
     },
     {
         id: 'f-02',
         title: '手羽先炸雞翅',
-        content: '名古屋最強下酒菜，「山ちゃん」和「風來坊」是兩大人氣名店，各有擁護者。',
-        image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=480&h=270&fit=crop'
+        content: '名古屋最強下酒菜，「山ちゃん」和「風來坊」是兩大人氣名店，各有擁護者。'
     },
     {
         id: 'f-03',
         title: '巨大炸蝦',
-        content: '名古屋的炸蝦 (エビフライ) 份量特別驚人，本地人開玩笑稱名古屋為「蝦炸之城」。',
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=480&h=270&fit=crop'
+        content: '名古屋的炸蝦 (エビフライ) 份量特別驚人，本地人開玩笑稱名古屋為「蝦炸之城」。'
     },
     {
         id: 'f-04',
         title: '鰻魚飯三吃',
-        content: 'ひつまぶし是名古屋必吃：原味享用、加蔥薑山葵、最後加高湯成茶泡飯，三種風味一次滿足。',
-        image: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=480&h=270&fit=crop'
+        content: 'ひつまぶし是名古屋必吃：原味享用、加蔥薑山葵、最後加高湯成茶泡飯，三種風味一次滿足。'
     },
     {
         id: 'f-05',
         title: '外郎 Uiro',
-        content: '名古屋的代表和菓子，口感 Q 彈似麻糬，抹茶與小豆口味是人氣伴手禮首選。',
-        image: 'https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=480&h=270&fit=crop'
+        content: '名古屋的代表和菓子，口感 Q 彈似麻糬，抹茶與小豆口味是人氣伴手禮首選。'
     },
     {
         id: 'f-06',
         title: 'Komeda 珈琲',
-        content: '發源自名古屋的連鎖咖啡店，招牌「シロノワール」是熱丹麥麵包配冰淇淋，甜鹹交融。',
-        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=480&h=270&fit=crop'
+        content: '發源自名古屋的連鎖咖啡店，招牌「シロノワール」是熱丹麥麵包配冰淇淋，甜鹹交融。'
     },
     {
         id: 'f-07',
         title: '味噌豬排',
-        content: '名古屋式炸豬排淋上甜鹹的八丁味噌醬，矢場炸豬排 (矢場とん) 是最具代表性的名店。',
-        image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=480&h=270&fit=crop'
+        content: '名古屋式炸豬排淋上甜鹹的八丁味噌醬，矢場炸豬排 (矢場とん) 是最具代表性的名店。'
     },
     {
         id: 'f-08',
         title: '台灣拉麵',
-        content: '其實是名古屋發明的！「味仙」的台灣拉麵以重辣聞名，辣度遠超一般拉麵。',
-        image: 'https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=480&h=270&fit=crop'
+        content: '其實是名古屋發明的！「味仙」的台灣拉麵以重辣聞名，辣度遠超一般拉麵。'
     },
     {
         id: 'f-09',
         title: '小倉吐司',
-        content: '名古屋獨特早餐：烤吐司上塗奶油再鋪滿紅豆餡，鹹甜組合意外地令人上癮。',
-        image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=480&h=270&fit=crop'
+        content: '名古屋獨特早餐：烤吐司上塗奶油再鋪滿紅豆餡，鹹甜組合意外地令人上癮。'
     },
     {
         id: 'f-10',
         title: '天むす',
-        content: '把小蝦天婦羅包進飯糰裡，是名古屋的經典速食小吃，適合邊走邊吃。',
-        image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?w=480&h=270&fit=crop'
+        content: '把小蝦天婦羅包進飯糰裡，是名古屋的經典速食小吃，適合邊走邊吃。'
     }
 ];
 
@@ -322,7 +295,7 @@ function pickUnshown(items) {
 
     const available = items.filter(item => !shown.includes(item.id));
     if (available.length === 0) {
-        // 全部都顯示過了，重置
+        // 全部都顯示過了，重置此分類
         const allIds = items.map(i => i.id);
         shown = shown.filter(id => !allIds.includes(id));
         sessionStorage.setItem(shownKey, JSON.stringify(shown));
@@ -337,35 +310,33 @@ function pickUnshown(items) {
 
 /**
  * 選取要顯示的提醒
+ * 機率分配：行前提醒 40% / 冷知識 30% / 美食 30%
  */
 function selectTip() {
     const dayNumber = getTripDayNumber();
     const roll = Math.random();
 
-    // Step 1：檢查特定日期事項
-    const matchedDateReminders = DATE_REMINDERS.filter(r => r.condition(dayNumber));
+    if (roll < 0.4) {
+        // 40% — 行前貼心提醒
+        // 合併特定日期事項（限當天）與通用事項
+        const matchedDate = DATE_REMINDERS.filter(r => r.condition(dayNumber));
+        const reminderPool = [...matchedDate, ...GENERAL_REMINDERS];
 
-    // Step 2：檢查通用事項
-    const generalPool = GENERAL_REMINDERS;
-
-    // Step 3：優先級判斷
-    // 特定日期事項 70% 觸發
-    if (matchedDateReminders.length > 0 && Math.random() < 0.7) {
-        const tip = pickUnshown(matchedDateReminders);
-        return { ...tip, type: 'reminder' };
-    }
-
-    // 通用事項 50% 觸發
-    if (Math.random() < 0.5) {
-        const tip = pickUnshown(generalPool);
-        return { ...tip, type: 'reminder' };
-    }
-
-    // Step 4：隨機選擇冷知識或美食
-    if (Math.random() < 0.5) {
+        if (reminderPool.length > 0) {
+            const tip = pickUnshown(reminderPool);
+            return { ...tip, type: 'reminder' };
+        }
+        // 若無可用提醒（不太可能），fallback 到冷知識
         const tip = pickUnshown(TRIVIA_TIPS);
         return { ...tip, type: 'trivia' };
+
+    } else if (roll < 0.7) {
+        // 30% — 名古屋冷知識
+        const tip = pickUnshown(TRIVIA_TIPS);
+        return { ...tip, type: 'trivia' };
+
     } else {
+        // 30% — 名古屋美食筆記
         const tip = pickUnshown(FOOD_TIPS);
         return { ...tip, type: 'food' };
     }
@@ -384,7 +355,7 @@ function getCategoryLabel(type) {
 }
 
 /**
- * 渲染提醒卡片
+ * 渲染提醒卡片（純文字，無圖片）
  */
 function renderDrawerTip() {
     const container = document.getElementById('drawerTips');
@@ -393,18 +364,11 @@ function renderDrawerTip() {
     const tip = selectTip();
     const label = getCategoryLabel(tip.type);
 
-    // 構建圖片 HTML（僅冷知識與美食有圖）
-    let imageHtml = '';
-    if (tip.image) {
-        imageHtml = `<img class="drawer-tip-image" src="${tip.image}" alt="${tip.title}" loading="lazy" onerror="this.style.display='none'">`;
-    }
-
     container.innerHTML = `
         <div class="drawer-tip-card">
             <div class="drawer-tip-label">${label}</div>
             <div class="drawer-tip-title">${tip.title}</div>
             <div class="drawer-tip-content">${tip.content}</div>
-            ${imageHtml}
         </div>
     `;
 }
