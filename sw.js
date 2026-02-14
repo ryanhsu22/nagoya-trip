@@ -8,7 +8,7 @@
  * 更新方式：修改 CACHE_VERSION 即可觸發所有使用者更新
  */
 
-const CACHE_VERSION = 'nagoya-trip-v7';
+const CACHE_VERSION = 'nagoya-trip-v8';
 
 const ASSETS_TO_CACHE = [
     '/nagoya-trip/',

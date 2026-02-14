@@ -877,23 +877,15 @@ function initPages() {
  * 顯示飯店位置於地圖上
  */
 function showHotelOnMap() {
-    // 切換至地圖顯示
-    if (window.mapManager) {
-        const hotelPos = { lat: 35.1687, lng: 136.8894 };
-        window.mapManager.toggle(hotelPos, 16);
-
-        // 如果地圖已經初始化，確保標記在那裡
-        if (window.mapManager.isInitialized) {
-            if (window.hotelMarker) {
-                window.hotelMarker.setMap(null);
-            }
-            window.hotelMarker = new google.maps.Marker({
-                position: hotelPos,
-                map: window.mapManager.map,
-                title: 'Nikko Style Nagoya',
-                animation: google.maps.Animation.DROP
-            });
+    // 呼叫行程地圖功能，定位到 Day 1 的「飯店 Check-in」
+    if (typeof showEventOnMap === 'function') {
+        // 先確保切換到 Day 1 (如果 scheduleManager 存在)
+        if (window.scheduleManager && typeof window.scheduleManager.switchDay === 'function') {
+            window.scheduleManager.switchDay(1);
         }
+
+        // 使用行程清單中的事件 ID: d1-e2 (飯店 Check-in)
+        showEventOnMap('d1-e2');
     }
 }
 

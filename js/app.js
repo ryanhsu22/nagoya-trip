@@ -536,8 +536,12 @@ async function initNotifications() {
  */
 function initMapControls() {
     // 地圖切換按鈕
-    document.getElementById('mapToggleBtn').addEventListener('click', () => {
+    document.getElementById('mapToggleBtn').addEventListener('click', (e) => {
         mapManager.toggle();
+
+        const btn = e.currentTarget;
+        const isHidden = document.getElementById('mapSection').classList.contains('hidden');
+        btn.classList.toggle('active', !isHidden);
 
         // 載入當日景點
         if (!document.getElementById('mapSection').classList.contains('hidden')) {
@@ -555,6 +559,7 @@ function initMapControls() {
             }
         } else {
             // 關閉地圖時移除所有狀態
+            document.getElementById('mapToggleBtn').classList.remove('active');
             document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
             document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
             if (window.mapManager) mapManager.clearSearch();
@@ -565,6 +570,7 @@ function initMapControls() {
     document.getElementById('mapCloseBtn').addEventListener('click', () => {
         mapManager.hide();
         // 關閉地圖時移除所有狀態
+        document.getElementById('mapToggleBtn').classList.remove('active');
         document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
         document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
         mapManager.clearSearch();
