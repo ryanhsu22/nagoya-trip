@@ -72,7 +72,7 @@
         <div class="drawer-tips" id="drawerTips">
             <!-- Rendered by JS -->
         </div>
-        <div class="drawer-version">v1.0 · NAGOYA TRIP 2026</div>
+        <div class="drawer-version">v1.1 · NAGOYA TRIP 2026</div>
     </aside>
 
     <!-- Header -->
@@ -317,6 +317,31 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/nagoya-trip/sw.js')
+                .then((registration) => {
+                    console.log('[App] Service Worker registered');
+
+                    // 檢查更新
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'activated') {
+                                // 新版本已啟用，重新載入頁面
+                                if (navigator.serviceWorker.controller) {
+                                    console.log('[App] New version available, reloading...');
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.log('[App] Service Worker registration failed:', error);
+                });
+        }
     </script>
 </body>
 
