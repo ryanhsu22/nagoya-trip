@@ -1374,7 +1374,7 @@ body.drawer-open .side-drawer {
 
 .drawer-tip-label {
     font-family: var(--font-display);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-gray-light);
     letter-spacing: 0.05em;
@@ -1384,7 +1384,7 @@ body.drawer-open .side-drawer {
 
 .drawer-tip-title {
     font-family: var(--font-display);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--color-black);
     margin-bottom: 4px;
@@ -1393,7 +1393,7 @@ body.drawer-open .side-drawer {
 
 .drawer-tip-content {
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 400;
     color: var(--color-gray);
     line-height: 1.6;
