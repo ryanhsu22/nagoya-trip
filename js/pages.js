@@ -18,6 +18,10 @@ function initSideDrawer() {
     // 開啟選單
     menuBtn.addEventListener('click', () => {
         document.body.classList.add('drawer-open');
+        // 每次打開抽屜時渲染一則貼心提醒
+        if (typeof renderDrawerTip === 'function') {
+            renderDrawerTip();
+        }
     });
 
     // 關閉選單
