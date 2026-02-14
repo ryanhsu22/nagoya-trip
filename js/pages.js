@@ -108,7 +108,7 @@ function renderFlightPage() {
                     <div class="flight-city">台北桃園</div>
                     <div class="flight-time">12:00</div>
                 </div>
-                <div class="flight-arrow-large">→</div>
+                <div class="flight-arrow-large">→→→</div>
                 <div class="flight-endpoint">
                     <div class="flight-code">NGO</div>
                     <div class="flight-city">名古屋中部</div>
@@ -142,7 +142,7 @@ function renderFlightPage() {
                     <div class="flight-city">名古屋中部</div>
                     <div class="flight-time">16:40</div>
                 </div>
-                <div class="flight-arrow-large">→</div>
+                <div class="flight-arrow-large">→→→</div>
                 <div class="flight-endpoint">
                     <div class="flight-code">TPE</div>
                     <div class="flight-city">台北桃園</div>
@@ -162,7 +162,7 @@ function renderFlightPage() {
                 <span class="info-value">中部 T1 → 桃園 T1</span>
             </div>
             <div class="info-alert warning">
-                建議 14:00 抵達中部機場報到
+                建議14:00抵達中部國際機場T1報到
             </div>
         </div>
 
@@ -312,8 +312,9 @@ function renderHotelPage() {
 
     container.innerHTML = `
         <div class="info-card highlight">
-            <div class="info-card-header">
+            <div class="info-card-header" style="position: relative;">
                 <h3 class="info-card-title">入住飯店</h3>
+                <button class="btn-map-link" onclick="showHotelOnMap()" style="position: absolute; right: 0; top: 0; padding: 4px 12px; background: var(--color-black); color: var(--color-white); border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; letter-spacing: 0.05em;">MAP</button>
             </div>
             <div class="hotel-name">名古屋日航尚格酒店</div>
             <div class="hotel-name-en">Nikko Style Nagoya</div>
@@ -419,7 +420,7 @@ function renderTransportPage() {
                 <div class="route-step">
                     <span class="step-text">中部國際機場</span>
                 </div>
-                <div class="route-arrow">↓ μ-SKY (28分鐘 ¥1,230)</div>
+                <div class="route-arrow">↓ μ-SKY (28分鐘 ¥1,430)</div>
                 <div class="route-step">
                     <span class="step-text">名古屋車站</span>
                 </div>
@@ -490,6 +491,7 @@ function renderTransportPage() {
                 <div class="app-item">Google Maps</div>
                 <div class="app-item">乗換案内</div>
                 <div class="app-item">Uber Japan</div>
+                <div class="app-item">GO</div>
             </div>
         </div>
 
@@ -594,31 +596,31 @@ function renderMedicalPage() {
                 <h3 class="info-card-title">幼兒 (2歲4個月) 醫療注意</h3>
             </div>
             <div class="info-list">
-                <div class="info-list-item important">
+                <div class="info-list-item" style="background-color: #E8D5F5; border-color: var(--color-black);">
                     <div class="info-list-content">
                         <strong>常備藥品</strong>
                         <span>攜帶台灣醫師開立的退燒藥、止瀉藥、過敏藥</span>
                     </div>
                 </div>
-                <div class="info-list-item">
+                <div class="info-list-item" style="background-color: #EDE0F7; border-color: var(--color-black);">
                     <div class="info-list-content">
                         <strong>發燒處理</strong>
                         <span>38°C↓ 先物理降溫；38.5°C↑ 服用退燒藥</span>
                     </div>
                 </div>
-                <div class="info-list-item">
+                <div class="info-list-item" style="background-color: #F0E6F9; border-color: var(--color-black);">
                     <div class="info-list-content">
                         <strong>腹瀉/嘔吐</strong>
                         <span>補充電解質液 (藥局可購 OS-1)，持續 24H 須就醫</span>
                     </div>
                 </div>
-                <div class="info-list-item important">
+                <div class="info-list-item" style="background-color: #F5EDFA; border-color: var(--color-black);">
                     <div class="info-list-content">
                         <strong>過敏反應</strong>
                         <span>嚴重過敏 (呼吸困難、腫脹) 立即撥 119</span>
                     </div>
                 </div>
-                <div class="info-list-item">
+                <div class="info-list-item" style="background-color: #F9F4FC; border-color: var(--color-black);">
                     <div class="info-list-content">
                         <strong>就醫語言</strong>
                         <span>準備中文病況卡片，搭配翻譯 App</span>
@@ -704,7 +706,7 @@ function renderBabyPage() {
                 <div class="info-list-item">
                     <div class="info-list-content">
                         <strong>選擇適合餐廳</strong>
-                        <span>有兒童座椅 (ベビーチェア) 的餐廳</span>
+                        <span>有兒童座椅的餐廳</span>
                     </div>
                 </div>
                 <div class="info-list-item">
@@ -865,6 +867,35 @@ function initPages() {
     });
 }
 
+/**
+ * 顯示飯店位置於地圖上
+ */
+function showHotelOnMap() {
+    // 切換至地圖顯示
+    const mapSection = document.getElementById('mapSection');
+    if (mapSection) {
+        mapSection.classList.remove('hidden');
+    }
+
+    // 如果有 Google Map 實例，移動至飯店座標
+    if (typeof google !== 'undefined' && window.map) {
+        const hotelPos = { lat: 35.1706, lng: 136.8816 };
+        window.map.setCenter(hotelPos);
+        window.map.setZoom(16);
+
+        // 標記飯店位置
+        if (window.hotelMarker) {
+            window.hotelMarker.setMap(null);
+        }
+        window.hotelMarker = new google.maps.Marker({
+            position: hotelPos,
+            map: window.map,
+            title: 'Nikko Style Nagoya'
+        });
+    }
+}
+
 // Export for app.js
 window.initPages = initPages;
 window.switchPage = switchPage;
+window.showHotelOnMap = showHotelOnMap;
