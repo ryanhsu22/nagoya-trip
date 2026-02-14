@@ -60,6 +60,8 @@ function switchPage(pageId) {
     const targetPage = document.getElementById(`page-${pageId}`);
     if (targetPage) {
         targetPage.classList.add('active');
+        // 切換頁面後自動捲動至頂部
+        window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
     // 渲染 Layer 2 頁面內容
@@ -488,10 +490,10 @@ function renderTransportPage() {
                 <h3 class="info-card-title">推薦 App</h3>
             </div>
             <div class="app-grid">
-                <div class="app-item">Google Maps</div>
-                <div class="app-item">乗換案内</div>
-                <div class="app-item">Uber Japan</div>
-                <div class="app-item">GO</div>
+                <div class="app-item"><strong>Google Maps</strong></div>
+                <div class="app-item"><strong>乗換案内</strong></div>
+                <div class="app-item"><strong>Uber Japan</strong></div>
+                <div class="app-item"><strong>GO</strong></div>
             </div>
         </div>
 
@@ -801,14 +803,14 @@ function renderBabyPage() {
                 <div class="shop-detail">
                     <div class="shop-header">
                         <span class="shop-name">赤ちゃんデパート水谷</span>
-                        <span class="shop-location">AEON Mall 名古屋港</span>
+                        <span class="shop-location" style="text-align: right;">AEON Mall<br>名古屋港</span>
                     </div>
                     <p class="shop-feature">尿布價格實惠</p>
                 </div>
                 <div class="shop-detail">
                     <div class="shop-header">
                         <span class="shop-name">千里馬藥局</span>
-                        <span class="shop-location">名古屋車站附近 3F</span>
+                        <span class="shop-location" style="text-align: right;">名古屋車站維持<br>附近 3F</span>
                     </div>
                     <p class="shop-feature">嬰兒用品 + 有中文店員</p>
                 </div>
@@ -828,22 +830,22 @@ function renderBabyPage() {
             </div>
             <div class="recommend-grid">
                 <div class="recommend-item">
-                    <span class="recommend-name">花王 Merries 尿布</span>
+                    <div class="recommend-name"><strong>嬰兒餅乾/零食</strong></div>
                 </div>
                 <div class="recommend-item">
-                    <span class="recommend-name">貝親 Pigeon 奶瓶</span>
+                    <div class="recommend-name"><strong>和光堂/明治奶粉</strong></div>
                 </div>
                 <div class="recommend-item">
-                    <span class="recommend-name">和光堂副食品</span>
+                    <div class="recommend-name"><strong>ピジョン奶瓶相關</strong></div>
                 </div>
                 <div class="recommend-item">
-                    <span class="recommend-name">PABRON 兒童感冒藥</span>
+                    <div class="recommend-name"><strong>日系有機棉衣物</strong></div>
                 </div>
                 <div class="recommend-item">
-                    <span class="recommend-name">池田模範堂止癢貼</span>
+                    <div class="recommend-name"><strong>幼兒口罩/衛生用品</strong></div>
                 </div>
                 <div class="recommend-item">
-                    <span class="recommend-name">幼兒零食 (米餅/小饅頭)</span>
+                    <div class="recommend-name"><strong>特色扭蛋/洗澡球</strong></div>
                 </div>
             </div>
         </div>
@@ -872,26 +874,22 @@ function initPages() {
  */
 function showHotelOnMap() {
     // 切換至地圖顯示
-    const mapSection = document.getElementById('mapSection');
-    if (mapSection) {
-        mapSection.classList.remove('hidden');
-    }
-
-    // 如果有 Google Map 實例，移動至飯店座標
-    if (typeof google !== 'undefined' && window.map) {
+    if (window.mapManager) {
         const hotelPos = { lat: 35.1706, lng: 136.8816 };
-        window.map.setCenter(hotelPos);
-        window.map.setZoom(16);
+        window.mapManager.toggle(hotelPos, 16);
 
-        // 標記飯店位置
-        if (window.hotelMarker) {
-            window.hotelMarker.setMap(null);
+        // 如果地圖已經初始化，確保標記在那裡
+        if (window.mapManager.isInitialized) {
+            if (window.hotelMarker) {
+                window.hotelMarker.setMap(null);
+            }
+            window.hotelMarker = new google.maps.Marker({
+                position: hotelPos,
+                map: window.mapManager.map,
+                title: 'Nikko Style Nagoya',
+                animation: google.maps.Animation.DROP
+            });
         }
-        window.hotelMarker = new google.maps.Marker({
-            position: hotelPos,
-            map: window.map,
-            title: 'Nikko Style Nagoya'
-        });
     }
 }
 

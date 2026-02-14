@@ -1575,7 +1575,7 @@ body.drawer-open .side-drawer {
 
 /* Info Alerts */
 .info-alert {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-xs);
     margin-top: var(--spacing-md);
     font-size: 0.875rem;
     font-weight: 600;
@@ -2078,7 +2078,7 @@ body.drawer-open .side-drawer {
 .situation-label {
     display: block;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom: var(--spacing-xs);
 }
 
