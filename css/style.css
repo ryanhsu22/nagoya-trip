@@ -1582,8 +1582,8 @@ body.drawer-open .side-drawer {
 }
 
 .info-alert.warning {
-    background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    background-color: #FFF3CD;
+    border: 2px solid var(--color-black);
 }
 
 /* Info List */
@@ -1599,7 +1599,7 @@ body.drawer-open .side-drawer {
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .info-list-item.important {
@@ -1670,6 +1670,7 @@ body.drawer-open .side-drawer {
 .flight-endpoint .flight-city {
     font-size: 0.8rem;
     color: var(--color-gray);
+    white-space: nowrap;
 }
 
 .flight-endpoint .flight-time {
@@ -1680,10 +1681,32 @@ body.drawer-open .side-drawer {
 }
 
 .flight-arrow-large {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--spacing-sm);
     color: var(--color-accent);
-    letter-spacing: 0.5em;
-    padding: 0 var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.flight-arrow-large .arrow-line {
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+    position: relative;
+}
+
+.flight-arrow-large .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid var(--color-accent);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
 }
 
 /* ============================================
@@ -1740,7 +1763,7 @@ body.drawer-open .side-drawer {
     align-items: center;
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .layer-label {
@@ -1765,7 +1788,7 @@ body.drawer-open .side-drawer {
     background-color: var(--color-bg-alt);
     text-align: center;
     font-size: 1rem;
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 /* ============================================
@@ -1794,7 +1817,7 @@ body.drawer-open .side-drawer {
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
     text-align: center;
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .shop-item .shop-name {
@@ -1822,7 +1845,7 @@ body.drawer-open .side-drawer {
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .food-icon {
@@ -1893,7 +1916,7 @@ body.drawer-open .side-drawer {
     justify-content: space-between;
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .ticket-name {
@@ -1918,7 +1941,8 @@ body.drawer-open .side-drawer {
     background-color: var(--color-bg-alt);
     text-align: center;
     font-size: 0.8rem;
-    border: 1px solid var(--color-black);
+    font-weight: 700;
+    border: 2px solid var(--color-black);
 }
 
 /* ============================================
@@ -2027,7 +2051,7 @@ body.drawer-open .side-drawer {
     gap: var(--spacing-sm);
     padding: var(--spacing-xs) var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
     cursor: pointer;
     font-size: 0.9rem;
 }
@@ -2048,17 +2072,18 @@ body.drawer-open .side-drawer {
 .situation-item {
     padding: var(--spacing-md);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .situation-label {
     display: block;
     font-weight: 600;
+    font-size: 0.9rem;
     margin-bottom: var(--spacing-xs);
 }
 
 .situation-item p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--color-gray);
 }
 
@@ -2072,7 +2097,7 @@ body.drawer-open .side-drawer {
 .shop-detail {
     padding: var(--spacing-md);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .shop-header {
@@ -2092,7 +2117,7 @@ body.drawer-open .side-drawer {
 }
 
 .shop-feature {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     color: var(--color-gray);
 }
 
@@ -2109,7 +2134,7 @@ body.drawer-open .side-drawer {
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
     background-color: var(--color-bg-alt);
-    border: 1px solid var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .recommend-icon {
@@ -2118,6 +2143,7 @@ body.drawer-open .side-drawer {
 
 .recommend-name {
     font-size: 0.8rem;
+    font-weight: 700;
 }
 
 /* ============================================
@@ -2129,7 +2155,7 @@ body.drawer-open .side-drawer {
     }
 
     .page-title {
-        font-size: 1.25rem;
+        font-size: 2.5rem;
     }
 
     .flight-endpoint .flight-code {

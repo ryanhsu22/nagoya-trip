@@ -108,7 +108,7 @@ function renderFlightPage() {
                     <div class="flight-city">台北桃園</div>
                     <div class="flight-time">12:00</div>
                 </div>
-                <div class="flight-arrow-large">→→→</div>
+                <div class="flight-arrow-large"><span class="arrow-line"></span></div>
                 <div class="flight-endpoint">
                     <div class="flight-code">NGO</div>
                     <div class="flight-city">名古屋中部</div>
@@ -142,7 +142,7 @@ function renderFlightPage() {
                     <div class="flight-city">名古屋中部</div>
                     <div class="flight-time">16:40</div>
                 </div>
-                <div class="flight-arrow-large">→→→</div>
+                <div class="flight-arrow-large"><span class="arrow-line"></span></div>
                 <div class="flight-endpoint">
                     <div class="flight-code">TPE</div>
                     <div class="flight-city">台北桃園</div>
@@ -314,13 +314,13 @@ function renderHotelPage() {
         <div class="info-card highlight">
             <div class="info-card-header" style="position: relative;">
                 <h3 class="info-card-title">入住飯店</h3>
-                <button class="btn-map-link" onclick="showHotelOnMap()" style="position: absolute; right: 0; top: 0; padding: 4px 12px; background: var(--color-black); color: var(--color-white); border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; letter-spacing: 0.05em;">MAP</button>
+                <button class="btn-map-link" onclick="showHotelOnMap()" style="position: absolute; right: 0; top: 0; padding: 4px 12px; background: #E8733A; color: var(--color-white); border: none; font-size: 0.75rem; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; border-radius: 4px;">MAP</button>
             </div>
             <div class="hotel-name">名古屋日航尚格酒店</div>
             <div class="hotel-name-en">Nikko Style Nagoya</div>
             <div class="info-row">
                 <span class="info-label">地址</span>
-                <span class="info-value">5-20-13 Meieki, Nakamura-ku, Nagoya</span>
+                <span class="info-value" style="text-align: right;">5-20-13 Meieki, Nakamura-ku, Nagoya</span>
             </div>
             <div class="info-row">
                 <span class="info-label">位置</span>
