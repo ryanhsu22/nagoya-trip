@@ -1325,6 +1325,7 @@ body.drawer-open .side-drawer {
     font-family: var(--font-body);
     font-size: var(--text-body);
     font-weight: 500;
+    color: var(--color-black);
 }
 
 .drawer-item:hover {
