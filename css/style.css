@@ -1579,6 +1579,7 @@ body.drawer-open .side-drawer {
     margin-top: var(--spacing-md);
     font-size: 0.875rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .info-alert.warning {
@@ -2009,6 +2010,7 @@ body.drawer-open .side-drawer {
 
 .severity-label {
     font-weight: 700;
+    font-size: 0.8rem;
 }
 
 .severity-icon {
@@ -2078,7 +2080,7 @@ body.drawer-open .side-drawer {
 .situation-label {
     display: block;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     margin-bottom: var(--spacing-xs);
 }
 
@@ -2103,12 +2105,14 @@ body.drawer-open .side-drawer {
 .shop-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: var(--spacing-xs);
+    gap: var(--spacing-sm);
 }
 
 .shop-detail .shop-name {
     font-weight: 700;
+    font-size: 0.9rem;
 }
 
 .shop-location {

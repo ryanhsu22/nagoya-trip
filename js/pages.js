@@ -62,6 +62,10 @@ function switchPage(pageId) {
         targetPage.classList.add('active');
         // 切換頁面後自動捲動至頂部
         window.scrollTo({ top: 0, behavior: 'instant' });
+        // 切換頁面時自動關閉地圖
+        if (window.mapManager) {
+            window.mapManager.hide();
+        }
     }
 
     // 渲染 Layer 2 頁面內容
@@ -875,7 +879,7 @@ function initPages() {
 function showHotelOnMap() {
     // 切換至地圖顯示
     if (window.mapManager) {
-        const hotelPos = { lat: 35.1706, lng: 136.8816 };
+        const hotelPos = { lat: 35.1687, lng: 136.8894 };
         window.mapManager.toggle(hotelPos, 16);
 
         // 如果地圖已經初始化，確保標記在那裡
