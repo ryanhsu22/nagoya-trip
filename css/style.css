@@ -694,11 +694,11 @@ body {
     }
 }
 
-/* Located success flash */
+/* Located success flash - 改為橘色 */
 .btn-locate.located {
-    background-color: var(--color-success);
+    background-color: var(--color-orange);
     color: var(--color-white);
-    border-color: var(--color-success);
+    border-color: var(--color-orange);
 }
 
 /* ============================================
@@ -1320,13 +1320,19 @@ body.drawer-open .side-drawer {
     }
 
     .map-search-container {
-        grid-column: 1 / -1;
-        /* 橫跨整行 */
+        grid-column: 1;
         grid-row: 2;
         max-width: none;
-        width: 100%;
+        width: 250px;
+        /* 寬度足以容納預設提示文字 */
         flex: none;
-        /* 覆蓋基礎 flex: 1 */
+    }
+
+    .btn-locate {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+        align-self: center;
     }
 
     .map-search-input {
