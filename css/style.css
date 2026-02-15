@@ -210,9 +210,12 @@ body {
     transition: all var(--transition-fast);
 }
 
-.btn-icon:hover,
+.btn-icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .btn-icon.active {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .btn-icon:active {
@@ -2130,66 +2133,7 @@ body.drawer-open .side-drawer {
     accent-color: var(--color-accent);
 }
 
-/* Situation List */
-.situation-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
 
-.situation-item {
-    padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--color-bg-alt);
-    border: 2px solid var(--color-black);
-}
-
-.situation-label {
-    display: block;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: var(--spacing-xs);
-}
-
-.situation-item p {
-    font-size: 0.8rem;
-    color: var(--color-gray);
-}
-
-/* Shop Detail */
-.shop-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.shop-detail {
-    padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--color-bg-alt);
-    border: 2px solid var(--color-black);
-}
-
-.shop-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--spacing-xs);
-    gap: var(--spacing-sm);
-}
-
-.shop-detail .shop-name {
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.shop-location {
-    font-size: 0.8rem;
-    color: var(--color-gray);
-}
-
-.shop-feature {
-    font-size: 0.8rem;
-    color: var(--color-gray);
-}
 
 /* Recommend Grid */
 .recommend-grid {

@@ -772,22 +772,30 @@ function renderBabyPage() {
             <div class="info-card-header">
                 <h3 class="info-card-title">哭鬧處理建議</h3>
             </div>
-            <div class="situation-list">
-                <div class="situation-item">
-                    <span class="situation-label">公共場所</span>
-                    <p>移動至安靜角落安撫，避免干擾他人</p>
+            <div class="info-list">
+                <div class="info-list-item">
+                    <div class="info-list-content">
+                        <strong>公共場所</strong>
+                        <span>移動至安靜角落安撫，避免干擾他人</span>
+                    </div>
                 </div>
-                <div class="situation-item">
-                    <span class="situation-label">交通工具</span>
-                    <p>準備零食、玩具、平板轉移注意力</p>
+                <div class="info-list-item">
+                    <div class="info-list-content">
+                        <strong>交通工具</strong>
+                        <span>準備零食、玩具、平板轉移注意力</span>
+                    </div>
                 </div>
-                <div class="situation-item">
-                    <span class="situation-label">疲累哭鬧</span>
-                    <p>揹巾安撫或推車讓其休息</p>
+                <div class="info-list-item">
+                    <div class="info-list-content">
+                        <strong>疲累哭鬧</strong>
+                        <span>揹巾安撫或推車讓其休息</span>
+                    </div>
                 </div>
-                <div class="situation-item">
-                    <span class="situation-label">餐廳哭鬧</span>
-                    <p>其中一人先帶離至戶外走動</p>
+                <div class="info-list-item">
+                    <div class="info-list-content">
+                        <strong>餐廳哭鬧</strong>
+                        <span>其中一人先帶離至戶外走動</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -796,34 +804,42 @@ function renderBabyPage() {
             <div class="info-card-header">
                 <h3 class="info-card-title">幼兒用品採買店家</h3>
             </div>
-            <div class="shop-list">
-                <div class="shop-detail">
-                    <div class="shop-header">
-                        <span class="shop-name">阿卡將本舖</span>
-                        <span class="shop-location">LaLaport 3F</span>
+            <div class="info-list">
+                <div class="info-list-item">
+                    <div class="info-list-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                            <strong>阿卡將本舖</strong>
+                            <span style="font-size: 0.75rem;">LaLaport 3F</span>
+                        </div>
+                        <span>品項最齊全</span>
                     </div>
-                    <p class="shop-feature">品項最齊全</p>
                 </div>
-                <div class="shop-detail">
-                    <div class="shop-header">
-                        <span class="shop-name">赤ちゃんデパート水谷</span>
-                        <span class="shop-location" style="text-align: right;">AEON Mall<br>名古屋港</span>
+                <div class="info-list-item">
+                    <div class="info-list-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                            <strong>赤ちゃんデパート水谷</strong>
+                            <span style="font-size: 0.75rem; text-align: right; line-height: 1.2;">AEON Mall<br>名古屋港</span>
+                        </div>
+                        <span>尿布價格實惠</span>
                     </div>
-                    <p class="shop-feature">尿布價格實惠</p>
                 </div>
-                <div class="shop-detail">
-                    <div class="shop-header">
-                        <span class="shop-name">千里馬藥局</span>
-                        <span class="shop-location" style="text-align: right;">名古屋車站維持<br>附近 3F</span>
+                <div class="info-list-item">
+                    <div class="info-list-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                            <strong>千里馬藥局</strong>
+                            <span style="font-size: 0.75rem; text-align: right; line-height: 1.2;">名古屋車站<br>附近 3F</span>
+                        </div>
+                        <span>嬰兒用品 + 有中文店員</span>
                     </div>
-                    <p class="shop-feature">嬰兒用品 + 有中文店員</p>
                 </div>
-                <div class="shop-detail">
-                    <div class="shop-header">
-                        <span class="shop-name">西松屋</span>
-                        <span class="shop-location">各地分店</span>
+                <div class="info-list-item">
+                    <div class="info-list-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                            <strong>西松屋</strong>
+                            <span style="font-size: 0.75rem;">各地分店</span>
+                        </div>
+                        <span>平價嬰幼兒服飾</span>
                     </div>
-                    <p class="shop-feature">平價嬰幼兒服飾</p>
                 </div>
             </div>
         </div>
