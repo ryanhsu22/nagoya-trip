@@ -207,11 +207,16 @@ body {
     border-radius: var(--radius-md);
     color: var(--color-black);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    /* 移除背景色的過渡優化，避免殘留感 */
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
 }
 
-.btn-icon:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+/* 僅在非活動狀態且支持 hover 的裝置上顯示背景 */
+@media (hover: hover) {
+    .btn-icon:not(.active):hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
 }
 
 .btn-icon.active {
