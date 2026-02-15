@@ -1300,7 +1300,8 @@ body.drawer-open .side-drawer {
         display: grid;
         grid-template-columns: 1fr auto;
         grid-template-rows: auto auto;
-        gap: var(--spacing-sm) 0;
+        gap: var(--spacing-sm) var(--spacing-md);
+        /* 第一個是 Row Gap，第二個是 Column Gap */
         padding: var(--spacing-sm) var(--spacing-md);
     }
 
@@ -1324,8 +1325,6 @@ body.drawer-open .side-drawer {
         grid-row: 2;
         max-width: none;
         width: 100%;
-        margin-right: 8px;
-        /* 與定位按鈕保持微小間距 */
         flex: none;
     }
 
