@@ -1323,8 +1323,9 @@ body.drawer-open .side-drawer {
         grid-column: 1;
         grid-row: 2;
         max-width: none;
-        width: 250px;
-        /* 寬度足以容納預設提示文字 */
+        width: 100%;
+        margin-right: 8px;
+        /* 與定位按鈕保持微小間距 */
         flex: none;
     }
 
