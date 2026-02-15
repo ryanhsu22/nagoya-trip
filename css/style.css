@@ -222,6 +222,14 @@ body {
     background-color: rgba(0, 0, 0, 0.12);
 }
 
+.btn-icon:focus {
+    outline: none;
+}
+
+.btn-icon:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-accent);
+}
+
 .btn-icon i {
     width: 22px;
     height: 22px;

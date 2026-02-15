@@ -543,6 +543,9 @@ function initMapControls() {
         const isHidden = document.getElementById('mapSection').classList.contains('hidden');
         btn.classList.toggle('active', !isHidden);
 
+        // 移除焦點以避免手機版持續顯示背景色
+        btn.blur();
+
         // 載入當日景點
         if (!document.getElementById('mapSection').classList.contains('hidden')) {
             // 開啟時，如果行程中有當前正在進行的項目，讓它的 MAP 按鈕發光
@@ -571,6 +574,7 @@ function initMapControls() {
         mapManager.hide();
         // 關閉地圖時移除所有狀態
         document.getElementById('mapToggleBtn').classList.remove('active');
+        document.getElementById('mapToggleBtn').blur();
         document.querySelectorAll('.btn-map-tech').forEach(btn => btn.classList.remove('map-active'));
         document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
         mapManager.clearSearch();
