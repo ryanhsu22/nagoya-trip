@@ -642,6 +642,65 @@ body {
     width: 100%;
 }
 
+/* Locate Button (Brutalist) */
+.btn-locate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-black);
+    border-radius: 0;
+    color: var(--color-black);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.btn-locate i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
+}
+
+.btn-locate:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.btn-locate:active {
+    transform: scale(0.92);
+}
+
+/* Locating animation - icon spins */
+.btn-locate.locating {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    pointer-events: none;
+}
+
+.btn-locate.locating i {
+    animation: spin-locate 1s linear infinite;
+}
+
+@keyframes spin-locate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Located success flash */
+.btn-locate.located {
+    background-color: var(--color-success);
+    color: var(--color-white);
+    border-color: var(--color-success);
+}
+
 /* ============================================
    FLIGHT CARD
    ============================================ */

@@ -575,6 +575,22 @@ function initMapControls() {
         document.querySelectorAll('.event-card').forEach(c => c.classList.remove('focused-float'));
         mapManager.clearSearch();
     });
+
+    // 定位按鈕
+    document.getElementById('mapLocateBtn').addEventListener('click', () => {
+        // 如果地圖尚未開啟，先開啟
+        const mapSection = document.getElementById('mapSection');
+        if (mapSection.classList.contains('hidden')) {
+            mapManager.toggle();
+            document.getElementById('mapToggleBtn').classList.add('active');
+            // 等待地圖初始化後再定位
+            setTimeout(() => {
+                mapManager.locateUser();
+            }, 400);
+        } else {
+            mapManager.locateUser();
+        }
+    });
 }
 
 /**

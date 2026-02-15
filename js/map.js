@@ -58,6 +58,8 @@ class MapManager {
         this.isInitialized = false;
         this.bounds = null;
         this.currentDayNumber = null; // 追蹤當前顯示的天數
+        this.userLocationMarker = null; // 使用者目前位置標記
+        this.isLocating = false; // 防止重複定位
     }
 
     /**
@@ -467,6 +469,139 @@ class MapManager {
             if (pageContainer) {
                 pageContainer.classList.remove('map-open');
             }
+        }
+    }
+
+    /**
+     * 建立使用者位置的自訂圖標 (Brutalist 風格藍色脈衝圓點)
+     */
+    createUserLocationIcon() {
+        const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                <!-- 外圈脈衝效果 -->
+                <circle cx="24" cy="24" r="20" fill="rgba(59, 130, 246, 0.15)" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2">
+                    <animate attributeName="r" values="14;20;14" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <!-- 中圈白底 -->
+                <circle cx="24" cy="24" r="10" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2.5"/>
+                <!-- 內圈藍色實心 -->
+                <circle cx="24" cy="24" r="6" fill="#3B82F6" stroke="none"/>
+            </svg>
+        `;
+
+        return {
+            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+            scaledSize: new google.maps.Size(48, 48),
+            anchor: new google.maps.Point(24, 24)
+        };
+    }
+
+    /**
+     * 定位使用者目前位置
+     */
+    locateUser() {
+        // 防止重複點擊
+        if (this.isLocating) return;
+
+        // 檢查瀏覽器是否支援 Geolocation
+        if (!navigator.geolocation) {
+            alert('您的瀏覽器不支援地理定位功能。');
+            return;
+        }
+
+        // 確保地圖已初始化
+        if (!this.isInitialized) {
+            this.init();
+        }
+
+        this.isLocating = true;
+
+        // 更新按鈕狀態為「定位中」
+        const locateBtn = document.getElementById('mapLocateBtn');
+        if (locateBtn) {
+            locateBtn.classList.add('locating');
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userPos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // 移除舊的使用者位置標記
+                if (this.userLocationMarker) {
+                    this.userLocationMarker.setMap(null);
+                }
+
+                // 建立新的使用者位置標記
+                this.userLocationMarker = new google.maps.Marker({
+                    position: userPos,
+                    map: this.map,
+                    icon: this.createUserLocationIcon(),
+                    title: '你的位置',
+                    zIndex: 999 // 確保在最上層
+                });
+
+                // 點擊標記顯示資訊
+                this.userLocationMarker.addListener('click', () => {
+                    this.infoWindow.setContent(`
+                        <div class="gm-popup">
+                            <div class="gm-popup-title">你的位置</div>
+                            <div class="gm-popup-time">${userPos.lat.toFixed(5)}, ${userPos.lng.toFixed(5)}</div>
+                        </div>
+                    `);
+                    this.infoWindow.open(this.map, this.userLocationMarker);
+                });
+
+                // 平滑移動到使用者位置
+                this.map.panTo(userPos);
+                this.map.setZoom(16);
+
+                this.isLocating = false;
+                if (locateBtn) {
+                    locateBtn.classList.remove('locating');
+                    locateBtn.classList.add('located');
+                    // 2 秒後移除 located 狀態
+                    setTimeout(() => locateBtn.classList.remove('located'), 2000);
+                }
+            },
+            (error) => {
+                this.isLocating = false;
+                if (locateBtn) {
+                    locateBtn.classList.remove('locating');
+                }
+
+                let message = '無法取得您的位置。';
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        message = '定位權限被拒絕。請在瀏覽器設定中允許存取位置。';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        message = '無法取得位置資訊，請確認是否開啟了定位服務。';
+                        break;
+                    case error.TIMEOUT:
+                        message = '定位逾時，請稍後再試。';
+                        break;
+                }
+                alert(message);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 30000 // 30 秒內的快取位置可重複使用
+            }
+        );
+    }
+
+    /**
+     * 清除使用者位置標記
+     */
+    clearUserLocation() {
+        if (this.userLocationMarker) {
+            this.userLocationMarker.setMap(null);
+            this.userLocationMarker = null;
         }
     }
 
