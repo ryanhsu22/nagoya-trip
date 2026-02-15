@@ -102,22 +102,7 @@ function loadItineraryData() {
     return itineraryData;
 }
 
-// 測試模式標記
-let isTestMode = false;
 
-/**
- * 切換測試模式（倒數 ⟷ 進度）
- */
-function toggleTestMode() {
-    isTestMode = !isTestMode;
-    updateCountdownOrProgress();
-
-    const btn = document.getElementById('testModeBtn');
-    if (btn) {
-        btn.textContent = isTestMode ? '🔧 測試模式：返回倒數' : '🔧 測試模式：切換倒數/進度';
-    }
-}
-window.toggleTestMode = toggleTestMode;
 
 /**
  * 計算距離出發的天數
@@ -174,7 +159,7 @@ function updateCountdownOrProgress() {
     if (!countdownSection || !progressSection) return;
 
     const tripStarted = isTripStarted();
-    const showProgress = isTestMode || tripStarted;
+    const showProgress = tripStarted;
 
     if (showProgress) {
         // 顯示進度區塊
@@ -209,7 +194,7 @@ function updateCountdown() {
  * 更新旅程進度（以天為單位，每天 20%）
  */
 function updateTripProgress() {
-    const currentDay = isTestMode ? 3 : getCurrentTripDayNumber(); // 測試模式顯示第 3 天
+    const currentDay = getCurrentTripDayNumber();
 
     // 計算進度 (每天 20%)
     let progress = 0;
@@ -370,7 +355,7 @@ function initApp() {
     // 每秒更新時間
     setInterval(() => {
         updateAllTimes();
-        if (isTripStarted() || isTestMode) {
+        if (isTripStarted()) {
             updateProgressTimes();
         }
     }, 1000);
